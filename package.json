@@ -1,0 +1,24 @@
+{
+  "name": "personal-site",
+  "version": "1.0.0",
+  "description": "My personal website",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --config webpack/webpack.dev.js --hot --inline --progress --port 8080",
+    "build": "rimraf dist && webpack --config webpack/webpack.prod.js --bail"
+  },
+  "author": "Blake Zimmerman",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^0.28.7",
+    "elm-css-webpack-loader": "^3.3.0",
+    "elm-hot-loader": "^0.5.4",
+    "elm-webpack-loader": "^4.3.1",
+    "html-webpack-plugin": "^2.30.1",
+    "rimraf": "^2.6.2",
+    "style-loader": "^0.18.2",
+    "webpack": "^3.5.6",
+    "webpack-dev-server": "^2.8.2",
+    "webpack-merge": "^4.1.0"
+  }
+}
