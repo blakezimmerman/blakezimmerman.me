@@ -29,4 +29,4 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
-  h1 [] [text "Under Construction"]
+  div [] [text "Under Construction"]

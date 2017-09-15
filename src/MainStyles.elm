@@ -12,7 +12,10 @@ type CssIds
 
 css =
   (stylesheet << namespace "main")
-  [ class HelloWorld
-    [ color (hex "FF0000")
+  [ body
+    [ margin zero
+    , fontFamilies [ "Helvetica Neue", "sans-serif" ]
+    , fontWeight (int 300)
+    , fontSize (Css.rem 1.2)
     ]
   ]
