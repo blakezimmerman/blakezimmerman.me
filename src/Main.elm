@@ -29,4 +29,22 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
-  div [] [text "Under Construction"]
+  div [ class [Main] ]
+    [ home model
+    --, experience model
+    ]
+
+home : Model -> Html Msg
+home model =
+  div [ class [Home] ]
+    [ h1 [ class [ Code ] ] [ text "[BZ]" ]
+    , h2 [] [ text "Blake Zimmerman" ]
+    , p [ class [ Code ] ] [ text "BZ :: Coffee -> Code" ]
+    , p [] [ text "Passionate software developer" ]
+    ]
+
+experience : Model -> Html Msg
+experience model =
+  div [ class [Experience] ]
+    [ h2 [] [ text "Experience" ]
+    ]
