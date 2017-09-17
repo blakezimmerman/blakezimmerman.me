@@ -6,6 +6,19 @@ const path = require('path');
 const BUILD_DIR = path.resolve(__dirname, '../dist');
 
 module.exports = webpackMerge(commonConfig, {
+  module: {
+    loaders : [
+      {
+        test: /\.elm$/,
+        exclude: [/elm-stuff/, /node_modules/, /Stylesheets\.elm/],
+        use: [
+          'elm-hot-loader',
+          'elm-webpack-loader',
+        ]
+      }
+    ]
+  },
+
   output: {
     path: BUILD_DIR,
     filename: 'app.[hash].bundle.js'

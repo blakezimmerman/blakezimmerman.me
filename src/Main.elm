@@ -8,22 +8,30 @@ main : Program Never Model Msg
 main =
   Html.beginnerProgram { model = model, view = view, update = update }
 
+
+-- MODEL
 type alias Model =
   {
   }
-
-type Msg
-  = Nothing
 
 model : Model
 model =
   {
   }
 
+
+-- UPDATE
+
+type Msg
+  = Nothing
+
 update : Msg -> Model -> Model
 update msg model =
   case msg of
     _ -> model
+
+
+-- VIEW
 
 { id, class, classList } = withNamespace "main"
 

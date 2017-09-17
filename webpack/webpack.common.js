@@ -13,14 +13,6 @@ module.exports = {
   module: {
     loaders : [
       {
-        test: /\.elm$/,
-        exclude: [/elm-stuff/, /node_modules/, /Stylesheets\.elm/],
-        use: [
-          'elm-hot-loader',
-          'elm-webpack-loader'
-        ]
-      },
-      {
         test: /Stylesheets\.elm$/,
         use: [
           'style-loader',
