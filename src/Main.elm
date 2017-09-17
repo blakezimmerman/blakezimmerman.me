@@ -1,34 +1,50 @@
 import Html exposing (..)
-import Html.Attributes exposing (..)
-import Html.Events exposing (..)
 import Html.CssHelpers exposing (withNamespace)
 import MainStyles exposing (..)
+import Ports exposing (..)
 
 main : Program Never Model Msg
-main =
-  Html.beginnerProgram { model = model, view = view, update = update }
+main = Html.program
+  { init = init
+  , update = update
+  , subscriptions = subscriptions
+  , view = view
+  }
+
+init : (Model, Cmd Msg)
+init =
+  (model, Cmd.none)
 
 
 -- MODEL
+
 type alias Model =
-  {
+  { scrollPercent: Float
   }
 
 model : Model
 model =
-  {
+  { scrollPercent = 0
   }
 
 
 -- UPDATE
 
 type Msg
-  = Nothing
+  = UpdateScrollPercent Float
 
-update : Msg -> Model -> Model
+update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
   case msg of
-    _ -> model
+    UpdateScrollPercent percent ->
+      ( { model | scrollPercent = percent }, Cmd.none )
+
+
+-- SUBSCRIPTIONS
+
+subscriptions : Model -> Sub Msg
+subscriptions model =
+  scrollPercent UpdateScrollPercent
 
 
 -- VIEW
@@ -39,7 +55,7 @@ view : Model -> Html Msg
 view model =
   div [ class [Main] ]
     [ home model
-    --, experience model
+    , experience model
     ]
 
 home : Model -> Html Msg
@@ -55,4 +71,11 @@ experience : Model -> Html Msg
 experience model =
   div [ class [Experience] ]
     [ h2 [] [ text "Experience" ]
+    , p [] [ text "Sample Text" ]
+    , p [] [ text "Sample Text" ]
+    , p [] [ text "Sample Text" ]
+    , p [] [ text "Sample Text" ]
+    , p [] [ text "Sample Text" ]
+    , p [] [ text "Sample Text" ]
+    , p [] [ text "Sample Text" ]
     ]
