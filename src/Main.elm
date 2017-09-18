@@ -60,13 +60,13 @@ header : Model -> Html Msg
 header model =
   if scrolling model.scrollPercent then
     div [ class [ Header ] ]
-      [ if model.scrollPercent > 20 then
-          h1 [ class [ Code, Logo ] ] [ text "[BZ]" ]
-        else
-          div [] []
+      [ h1
+          [ class <| if model.scrollPercent > 20
+              then [ Code, Logo ] else [ Code, NoLogo]
+          ] [ text "[BZ]" ]
       , div []
-        [ menuIcon
-        ]
+          [ menuIcon
+          ]
       ]
   else
     div [ class [ HeaderInit ] ]

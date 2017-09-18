@@ -14,6 +14,7 @@ type CssClasses
   | Header
   | HeaderContainer
   | Logo
+  | NoLogo
   | MenuIcon
   | BodyInit
   | Body
@@ -52,6 +53,20 @@ headerBase =
   , color white
   , backgroundColor red
   , transition "0.5s"
+  ]
+
+logoBase : List Style
+logoBase =
+  [ fontSize (Css.rem 1.5)
+  , displayFlex
+  , alignItems center
+  , position fixed
+  , top zero
+  , left zero
+  , margin zero
+  , height (pct 5)
+  , padding2 (pct 0.7) (pct 3)
+  , transition "0.6s"
   ]
 
 
@@ -101,17 +116,10 @@ css =
       , fontSize (Css.rem 1)
       ]
 
-  , class Logo
-      [ fontSize (Css.rem 1.5)
-      , displayFlex
-      , alignItems center
-      , position fixed
-      , top zero
-      , left zero
-      , margin zero
-      , height (pct 5)
-      , padding2 (pct 0.7) (pct 3)
-      , animation "fadeIn" "0.6s"
+  , class Logo logoBase
+
+  , class NoLogo <| List.append logoBase
+      [ opacity zero
       ]
 
   , class MenuIcon
