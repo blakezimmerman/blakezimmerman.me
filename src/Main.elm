@@ -1,19 +1,14 @@
 import Html exposing (..)
 import Html.CssHelpers exposing (withNamespace)
 import MainStyles exposing (..)
-import Ports exposing (..)
+import Utils exposing (onScroll, ScrollEvent, scrolling)
 
 main : Program Never Model Msg
-main = Html.program
-  { init = init
+main = Html.beginnerProgram
+  { model = model
   , update = update
-  , subscriptions = subscriptions
   , view = view
   }
-
-init : (Model, Cmd Msg)
-init =
-  (model, Cmd.none)
 
 
 -- MODEL
@@ -31,20 +26,13 @@ model =
 -- UPDATE
 
 type Msg
-  = UpdateScrollPercent Float
+  = UpdateScrollPercent ScrollEvent
 
-update : Msg -> Model -> (Model, Cmd Msg)
+update : Msg -> Model -> Model
 update msg model =
   case msg of
-    UpdateScrollPercent percent ->
-      ( { model | scrollPercent = percent }, Cmd.none )
-
-
--- SUBSCRIPTIONS
-
-subscriptions : Model -> Sub Msg
-subscriptions model =
-  scrollPercent UpdateScrollPercent
+    UpdateScrollPercent event ->
+      { model | scrollPercent = event.scrollPos / event.visibleHeight * 100 }
 
 
 -- VIEW
@@ -54,9 +42,36 @@ subscriptions model =
 view : Model -> Html Msg
 view model =
   div [ class [Main] ]
-    [ home model
-    , experience model
+    [ header model
+    , div
+        [ class [ Body ], onScroll UpdateScrollPercent ]
+        [ home model
+        , experience model
+        ]
     ]
+
+menuIcon : Html Msg
+menuIcon =
+  div [ class [ MenuIcon ] ]
+    [ div [] [], div [] [], div [] [] ]
+
+
+header : Model -> Html Msg
+header model =
+  if scrolling model.scrollPercent then
+    div [ class [ Header ] ]
+      [ if model.scrollPercent > 20 then
+          h1 [ class [ Code, Logo ] ] [ text "[BZ]" ]
+        else
+          div [] []
+      , div []
+        [ menuIcon
+        ]
+      ]
+  else
+    div [ class [ HeaderInit ] ]
+      [ menuIcon
+      ]
 
 home : Model -> Html Msg
 home model =
@@ -71,6 +86,11 @@ experience : Model -> Html Msg
 experience model =
   div [ class [Experience] ]
     [ h2 [] [ text "Experience" ]
+    , p [] [ text "Sample Text" ]
+    , p [] [ text "Sample Text" ]
+    , p [] [ text "Sample Text" ]
+    , p [] [ text "Sample Text" ]
+    , p [] [ text "Sample Text" ]
     , p [] [ text "Sample Text" ]
     , p [] [ text "Sample Text" ]
     , p [] [ text "Sample Text" ]
