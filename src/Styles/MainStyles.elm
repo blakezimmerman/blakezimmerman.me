@@ -1,4 +1,4 @@
-module MainStyles exposing (..)
+module Styles.MainStyles exposing (..)
 
 import Css exposing (..)
 import Css.Elements exposing (..)
@@ -21,7 +21,8 @@ type CssClasses
   | BodyInit
   | Body
   | Home
-  | Experience
+  | Resume
+  | About
 
 
 -- CLASS BASES
@@ -30,7 +31,7 @@ headerBase : List Style
 headerBase =
   [ width (pct 94)
   , margin zero
-  , padding2 (pct 0.7) (pct 3)
+  , padding2 (pct 0.9) (pct 3)
   , position fixed
   , top zero
   , left zero
@@ -40,6 +41,7 @@ headerBase =
   , color white
   , backgroundColor red
   , transition "0.5s"
+  , zIndex (int 99)
   ]
 
 logoBase : List Style
@@ -52,7 +54,7 @@ logoBase =
   , left zero
   , margin zero
   , height (pct 5)
-  , padding2 (pct 0.7) (pct 3)
+  , padding2 (pct 0.9) (pct 3)
   , transition "0.6s"
   ]
 
@@ -106,9 +108,10 @@ css =
           ]
       ]
 
-  , class Body
+  , class Body <| List.append overflowScrollingHack
       [ height (pct 100)
       , overflow auto
+      , overflowScrolling "touch"
       ]
 
   , class Home
@@ -120,12 +123,12 @@ css =
       , backgroundColor red
       , children
           [ h1
-              [ marginTop (vh 20)
-              , marginBottom (Css.rem 4)
+              [ marginTop (vh 15)
+              , marginBottom zero
               , fontSize (Css.rem 4)
               ]
           , h2
-              [ marginTop (Css.rem 1)
+              [ marginTop (Css.rem 4)
               , marginBottom (Css.rem 1)
               , fontSize (Css.rem 2.2)
               , fontWeight (int 300)
@@ -138,7 +141,20 @@ css =
           ]
       ]
 
-  , class Experience
+  , class Resume
+      [ cursor pointer
+      , backgroundColor white
+      , color red
+      , border zero
+      , borderRadius (px 2)
+      , marginTop (Css.rem 3)
+      , padding2 (Css.rem 0.5) (Css.rem 1)
+      , fontSize (Css.rem 1.1)
+      , fontWeight (int 300)
+      , textDecoration none
+      ]
+
+  , class About
       [ displayFlex
       , flexDirection column
       , alignItems center

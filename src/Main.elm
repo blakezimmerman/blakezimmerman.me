@@ -1,6 +1,7 @@
 import Html exposing (..)
+import Html.Attributes exposing (..)
 import Html.CssHelpers exposing (withNamespace)
-import MainStyles exposing (..)
+import Styles.MainStyles exposing (..)
 import Utils exposing (onScroll, ScrollEvent, isScrolling)
 
 main : Program Never Model Msg
@@ -46,7 +47,7 @@ view model =
     , div
         [ class [ Body ], onScroll UpdateScrollPercent ]
         [ home model
-        , experience model
+        , about model
         ]
     ]
 
@@ -61,7 +62,7 @@ header model =
   if isScrolling model.scrollPercent then
     div [ class [ Header ] ]
       [ h1
-          [ class <| if model.scrollPercent > 20
+          [ class <| if model.scrollPercent > 15
               then [ Code, Logo ] else [ Code, NoLogo]
           ] [ text "[BZ]" ]
       , div []
@@ -75,17 +76,18 @@ header model =
 
 home : Model -> Html Msg
 home model =
-  div [ class [Home] ]
+  div [ class [ Home ] ]
     [ h1 [ class [ Code ] ] [ text "[BZ]" ]
     , h2 [] [ text "Blake Zimmerman" ]
     , p [ class [ Code ] ] [ text "BZ :: Coffee -> Code" ]
-    , p [] [ text "Passionate software developer" ]
+    , p [] [ text "Student and Software Developer" ]
+    , a [ class [ Resume ], href "/assets/BlakeZimmermanResume.pdf" ] [ text "View My Resume" ]
     ]
 
-experience : Model -> Html Msg
-experience model =
-  div [ class [Experience] ]
-    [ h2 [] [ text "Experience" ]
+about : Model -> Html Msg
+about model =
+  div [ class [ About ] ]
+    [ h2 [] [ text "About Me" ]
     , p [] [ text "Sample Text" ]
     , p [] [ text "Sample Text" ]
     , p [] [ text "Sample Text" ]

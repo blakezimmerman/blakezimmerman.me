@@ -19,6 +19,10 @@ module.exports = {
           'css-loader',
           'elm-css-webpack-loader'
         ]
+      },
+      {
+        test: /\.(pdf|png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
+        use: 'file-loader?name=assets/[name].[ext]'
       }
     ]
   },
