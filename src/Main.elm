@@ -1,7 +1,7 @@
 import Html exposing (..)
 import Html.CssHelpers exposing (withNamespace)
 import MainStyles exposing (..)
-import Utils exposing (onScroll, ScrollEvent, scrolling)
+import Utils exposing (onScroll, ScrollEvent, isScrolling)
 
 main : Program Never Model Msg
 main = Html.beginnerProgram
@@ -58,7 +58,7 @@ menuIcon =
 
 header : Model -> Html Msg
 header model =
-  if scrolling model.scrollPercent then
+  if isScrolling model.scrollPercent then
     div [ class [ Header ] ]
       [ h1
           [ class <| if model.scrollPercent > 20

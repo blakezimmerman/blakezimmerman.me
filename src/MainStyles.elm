@@ -3,6 +3,8 @@ module MainStyles exposing (..)
 import Css exposing (..)
 import Css.Elements exposing (..)
 import Css.Namespace exposing (namespace)
+import Styles.Colors as Colors exposing (..)
+import Styles.CustomCss as Custom exposing (..)
 
 
 -- CLASSES
@@ -20,21 +22,6 @@ type CssClasses
   | Body
   | Home
   | Experience
-
-
--- COLORS
-
-white : Color
-white = (hex "FFFFFF")
-
-black : Color
-black = (hex "000000")
-
-red : Color
-red = (hex "E51D1D")
-
-blue : Color
-blue = (hex "3333FF")
 
 
 -- CLASS BASES
@@ -70,18 +57,6 @@ logoBase =
   ]
 
 
--- CUSTOM PROPS
-
-transition : String -> Style
-transition str = property "transition" <| str
-
-boxShadow : String -> Style
-boxShadow str = property "box-shadow" <| str
-
-animation : String -> String -> Style
-animation name duration = property "animation" <| name ++ " " ++ duration
-
-
 -- STYLESHEET
 
 css : Stylesheet
@@ -112,15 +87,13 @@ css =
 
   , class Header <| List.append headerBase
       [ height (pct 5)
-      , boxShadow "0 8px 16px rgba(0,0,0,0.19), 0 5px 5px rgba(0,0,0,0.23)"
+      , Custom.boxShadow "0 8px 16px rgba(0,0,0,0.19), 0 5px 5px rgba(0,0,0,0.23)"
       , fontSize (Css.rem 1)
       ]
 
   , class Logo logoBase
 
-  , class NoLogo <| List.append logoBase
-      [ opacity zero
-      ]
+  , class NoLogo <| List.append logoBase [ opacity zero ]
 
   , class MenuIcon
       [ children

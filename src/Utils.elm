@@ -1,4 +1,4 @@
-module Utils exposing (onScroll, ScrollEvent, scrolling)
+module Utils exposing (onScroll, ScrollEvent, isScrolling)
 
 import Html exposing (Attribute)
 import Html.Events exposing (on)
@@ -27,5 +27,5 @@ onScrollJsonParser =
 
 -- MISC
 
-scrolling : Float -> Bool
-scrolling scrollPercent = scrollPercent > 0
+isScrolling : Float -> Bool
+isScrolling scrollPercent = scrollPercent > 0
