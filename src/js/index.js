@@ -1,15 +1,17 @@
-require('../elm/Stylesheets.elm');
-require('../assets/BlakeZimmermanResume.pdf');
-
+const styles = require('../elm/Stylesheets.elm');
+const resume = require('../assets/BlakeZimmermanResume.pdf');
+const smoothScroll = require('./smoothScroll');
 const Elm = require('../elm/Main.elm');
+
 const app = Elm.Main.embed(document.getElementById('main'));
 
-const smoothScroll = require('./smoothScroll');
+window.addEventListener('scroll', function() {
+  app.ports.scrollDetails.send([window.pageYOffset, window.innerHeight]);
+});
 
 app.ports.smoothScroll.subscribe(function([target, offset]) {
   smoothScroll(target, {
     duration: 800,
-    offset,
-    container: '.mainBody'
+    offset
   });
 });

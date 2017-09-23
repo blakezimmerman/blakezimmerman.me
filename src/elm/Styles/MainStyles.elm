@@ -18,6 +18,7 @@ type CssClasses
   | Logo
   | NoLogo
   | MenuIcon
+  | Menu
   | Body
   | Home
   | Resume
@@ -28,19 +29,19 @@ type CssClasses
 
 headerBase : List Style
 headerBase =
-  [ width (pct 94)
+  [ width (pct 92)
   , margin zero
-  , padding2 (pct 0.9) (pct 3)
+  , padding2 (pct 1.1) (pct 4)
   , position fixed
-  , top zero
-  , left zero
+  --, top zero
+  --, left zero
   , displayFlex
   , justifyContent flexEnd
   , alignItems center
   , color white
   , backgroundColor red
   , transition "0.5s"
-  , zIndex (int 99)
+  , zIndex (int 1)
   ]
 
 logoBase : List Style
@@ -52,8 +53,8 @@ logoBase =
   , top zero
   , left zero
   , margin zero
-  , height (pct 5)
-  , padding2 (pct 0.9) (pct 3)
+  , height (pct 6)
+  , padding2 (pct 1.1) (pct 4)
   , transition "0.6s"
   ]
 
@@ -63,7 +64,8 @@ logoBase =
 css : Stylesheet
 css =
   (stylesheet << namespace "main")
-  [ html [ height (pct 100) ]
+  [ html
+      [ height (pct 100) ]
 
   , body
       [ height (pct 100)
@@ -80,9 +82,9 @@ css =
       ]
 
   , class Main
-    [ height (pct 100)
-    , overflow auto
-    ]
+      [ height (pct 100)
+      , overflow auto
+      ]
 
   , class HeaderInit <| List.append headerBase
       [ height (pct 10)
@@ -90,7 +92,7 @@ css =
       ]
 
   , class Header <| List.append headerBase
-      [ height (pct 5)
+      [ height (pct 6)
       , Custom.boxShadow "0 8px 16px rgba(0,0,0,0.19), 0 5px 5px rgba(0,0,0,0.23)"
       , fontSize (Css.rem 1)
       ]
@@ -110,10 +112,10 @@ css =
           ]
       ]
 
-  , class Body <| List.append overflowScrollingHack
-      [ height (pct 100)
-      , overflow auto
-      , overflowScrolling "touch"
+  , class Body
+      [ position absolute
+      , width (pct 100)
+      , height (pct 100)
       ]
 
   , class Home

@@ -3,7 +3,6 @@ import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Html.CssHelpers exposing (withNamespace)
 import Styles.MainStyles exposing (..)
-import Utils exposing (onScroll, ScrollEvent, isScrolling)
 import Ports exposing (..)
 
 
@@ -13,7 +12,7 @@ main : Program Never Model Msg
 main = Html.program
   { init = init
   , update = update
-  , subscriptions = \x -> Sub.none
+  , subscriptions = subscriptions
   , view = view
   }
 
@@ -24,36 +23,51 @@ init = (model, Cmd.none)
 -- MODEL
 
 type alias Model =
-  { scrollPercent: Float
-  , visibleHeight: Float
+  { scrollPercent : Float
+  , visibleHeight : Float
+  , showMenu : Bool
   }
 
 model : Model
 model =
   { scrollPercent = 0
   , visibleHeight = 0
+  , showMenu = False
   }
 
 
 -- UPDATE
 
 type Msg
-  = UpdateScrollPercent ScrollEvent
+  = UpdateScrollDetails (Float, Float)
   | SmoothScroll (String, Float)
+  | ToggleMenu
 
 update : Msg -> Model -> (Model, Cmd msg)
 update msg model =
   case msg of
-    UpdateScrollPercent event ->
+    UpdateScrollDetails (yOffset, innerHeight) ->
       ({ model
-       | scrollPercent = event.scrollPos / event.visibleHeight * 100
-       , visibleHeight = event.visibleHeight
+       | scrollPercent = yOffset / innerHeight * 100
+       , visibleHeight = innerHeight
        }
        , Cmd.none
       )
 
     SmoothScroll args ->
       (model, smoothScroll args)
+
+    ToggleMenu ->
+      ({ model | showMenu = not model.showMenu }
+       , Cmd.none
+      )
+
+
+-- SUBSCRIPTIONS
+
+subscriptions : Model -> Sub Msg
+subscriptions model =
+  scrollDetails UpdateScrollDetails
 
 
 -- VIEW
@@ -65,11 +79,15 @@ view model =
   div [ class [ Main ] ]
     [ header model
     , div
-        [ class [ Body ], onScroll UpdateScrollPercent ]
-        [ home model
-        , about model
+        [ class [ Body ] ]
+        [ home
+        , about
         ]
     ]
+
+menu : Model -> Html Msg
+menu model =
+  div [] []
 
 menuIcon : Html Msg
 menuIcon =
@@ -78,7 +96,7 @@ menuIcon =
 
 header : Model -> Html Msg
 header model =
-  if isScrolling model.scrollPercent then
+  if model.scrollPercent > 0 then
     div [ class [ Header ] ]
       [ h1
           [ class <| if model.scrollPercent > 15
@@ -94,8 +112,8 @@ header model =
       [ menuIcon
       ]
 
-home : Model -> Html Msg
-home model =
+home : Html Msg
+home =
   div [ class [ Home ] ]
     [ h1 [ class [ Code ] ] [ text "[BZ]" ]
     , h2 [] [ text "Blake Zimmerman" ]
@@ -105,8 +123,8 @@ home model =
         [ text "View My Resume" ]
     ]
 
-about : Model -> Html Msg
-about model =
+about : Html Msg
+about =
   div [ class [ About ] ]
     [ h2 [] [ a [ id "About"] [], text "About Me" ]
     , p [] [ text "Sample Text" ]
