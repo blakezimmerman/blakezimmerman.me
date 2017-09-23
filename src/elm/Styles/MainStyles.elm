@@ -18,7 +18,6 @@ type CssClasses
   | Logo
   | NoLogo
   | MenuIcon
-  | BodyInit
   | Body
   | Home
   | Resume

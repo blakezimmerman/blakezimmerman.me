@@ -6,6 +6,9 @@ import Styles.MainStyles exposing (..)
 import Utils exposing (onScroll, ScrollEvent, isScrolling)
 import Ports exposing (..)
 
+
+-- INITIALIZE
+
 main : Program Never Model Msg
 main = Html.program
   { init = init
@@ -22,11 +25,13 @@ init = (model, Cmd.none)
 
 type alias Model =
   { scrollPercent: Float
+  , visibleHeight: Float
   }
 
 model : Model
 model =
   { scrollPercent = 0
+  , visibleHeight = 0
   }
 
 
@@ -34,16 +39,21 @@ model =
 
 type Msg
   = UpdateScrollPercent ScrollEvent
-  | SmoothScroll
+  | SmoothScroll (String, Float)
 
 update : Msg -> Model -> (Model, Cmd msg)
 update msg model =
   case msg of
     UpdateScrollPercent event ->
-      ({ model | scrollPercent = event.scrollPos / event.visibleHeight * 100 }, Cmd.none)
+      ({ model
+       | scrollPercent = event.scrollPos / event.visibleHeight * 100
+       , visibleHeight = event.visibleHeight
+       }
+       , Cmd.none
+      )
 
-    SmoothScroll ->
-      (model, smoothScroll "placeholder")
+    SmoothScroll args ->
+      (model, smoothScroll args)
 
 
 -- VIEW
@@ -66,7 +76,6 @@ menuIcon =
   div [ class [ MenuIcon ] ]
     [ div [] [], div [] [], div [] [] ]
 
-
 header : Model -> Html Msg
 header model =
   if isScrolling model.scrollPercent then
@@ -74,7 +83,7 @@ header model =
       [ h1
           [ class <| if model.scrollPercent > 15
               then [ Code, Logo ] else [ Code, NoLogo]
-          , onClick <| SmoothScroll
+          , onClick <| SmoothScroll (".mainHome", 0)
           ] [ text "[BZ]" ]
       , div []
           [ menuIcon
@@ -92,7 +101,8 @@ home model =
     , h2 [] [ text "Blake Zimmerman" ]
     , p [ class [ Code ] ] [ text "BZ :: Coffee -> Code" ]
     , p [] [ text "Student and Software Developer" ]
-    , a [ class [ Resume ], href "/assets/BlakeZimmermanResume.pdf" ] [ text "View My Resume" ]
+    , a [ class [ Resume ], href "/assets/BlakeZimmermanResume.pdf" ]
+        [ text "View My Resume" ]
     ]
 
 about : Model -> Html Msg

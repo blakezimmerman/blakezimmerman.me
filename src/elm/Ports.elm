@@ -1,3 +1,3 @@
 port module Ports exposing (..)
 
-port smoothScroll : String -> Cmd msg
+port smoothScroll : (String, Float) -> Cmd msg
