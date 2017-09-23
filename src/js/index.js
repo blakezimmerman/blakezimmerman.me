@@ -11,5 +11,5 @@ app.ports.smoothScroll.subscribe(function([target, offset]) {
     duration: 800,
     offset,
     container: '.mainBody'
-  })
+  });
 });
