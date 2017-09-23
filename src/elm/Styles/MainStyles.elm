@@ -80,7 +80,10 @@ css =
       , fontFeatureSettings (featureTag "calt")
       ]
 
-  , class Main [ height (pct 100) ]
+  , class Main
+    [ height (pct 100)
+    , overflow auto
+    ]
 
   , class HeaderInit <| List.append headerBase
       [ height (pct 10)

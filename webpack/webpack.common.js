@@ -1,10 +1,10 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
-const ROOT = path.resolve(__dirname, '../');
+const ROOT = path.resolve(__dirname, '../src');
 
 module.exports = {
-  entry: path.resolve(ROOT, './index.js'),
+  entry: path.resolve(ROOT, './js/index.js'),
 
   resolve: {
     extensions: ['.js', '.elm'],

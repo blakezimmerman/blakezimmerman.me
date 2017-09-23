@@ -1,15 +1,21 @@
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Html.Events exposing (..)
 import Html.CssHelpers exposing (withNamespace)
 import Styles.MainStyles exposing (..)
 import Utils exposing (onScroll, ScrollEvent, isScrolling)
+import Ports exposing (..)
 
 main : Program Never Model Msg
-main = Html.beginnerProgram
-  { model = model
+main = Html.program
+  { init = init
   , update = update
+  , subscriptions = \x -> Sub.none
   , view = view
   }
+
+init : ( Model, Cmd msg )
+init = (model, Cmd.none)
 
 
 -- MODEL
@@ -28,12 +34,16 @@ model =
 
 type Msg
   = UpdateScrollPercent ScrollEvent
+  | SmoothScroll
 
-update : Msg -> Model -> Model
+update : Msg -> Model -> (Model, Cmd msg)
 update msg model =
   case msg of
     UpdateScrollPercent event ->
-      { model | scrollPercent = event.scrollPos / event.visibleHeight * 100 }
+      ({ model | scrollPercent = event.scrollPos / event.visibleHeight * 100 }, Cmd.none)
+
+    SmoothScroll ->
+      (model, smoothScroll "placeholder")
 
 
 -- VIEW
@@ -42,7 +52,7 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
-  div [ class [Main] ]
+  div [ class [ Main ] ]
     [ header model
     , div
         [ class [ Body ], onScroll UpdateScrollPercent ]
@@ -64,6 +74,7 @@ header model =
       [ h1
           [ class <| if model.scrollPercent > 15
               then [ Code, Logo ] else [ Code, NoLogo]
+          , onClick <| SmoothScroll
           ] [ text "[BZ]" ]
       , div []
           [ menuIcon
@@ -87,7 +98,7 @@ home model =
 about : Model -> Html Msg
 about model =
   div [ class [ About ] ]
-    [ h2 [] [ text "About Me" ]
+    [ h2 [] [ a [ id "About"] [], text "About Me" ]
     , p [] [ text "Sample Text" ]
     , p [] [ text "Sample Text" ]
     , p [] [ text "Sample Text" ]
