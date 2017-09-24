@@ -1,5 +1,6 @@
 const styles = require('../elm/Stylesheets.elm');
 const resume = require('../assets/BlakeZimmermanResume.pdf');
+const navIcons = require('../assets/navIcons.svg');
 const smoothScroll = require('./smoothScroll');
 const Elm = require('../elm/Main.elm');
 

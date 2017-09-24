@@ -3,6 +3,8 @@ import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Html.CssHelpers exposing (withNamespace)
 import Styles.MainStyles exposing (..)
+import Svg exposing (svg, use)
+import Svg.Attributes exposing (xlinkHref)
 import Ports exposing (..)
 
 
@@ -78,6 +80,7 @@ view : Model -> Html Msg
 view model =
   div [ class [ Main ] ]
     [ header model
+    , if model.showMenu then menu model else div [] []
     , div
         [ class [ Body ] ]
         [ home
@@ -85,13 +88,21 @@ view model =
         ]
     ]
 
+navIcon : String -> Html Msg
+navIcon name =
+  svg
+    [ Svg.Attributes.class "mainNavIcon" ]
+    [ use [ xlinkHref <| "assets/navIcons.svg#ic_" ++ name ++ "_24px" ] [] ]
+
 menu : Model -> Html Msg
 menu model =
-  div [] []
+  div [ class [ Menu] ]
+    [ div [ onClick ToggleMenu ] [ navIcon "close" ]
+    ]
 
 menuIcon : Html Msg
 menuIcon =
-  div [ class [ MenuIcon ] ]
+  div [ class [ MenuIcon ], onClick ToggleMenu ]
     [ div [] [], div [] [], div [] [] ]
 
 header : Model -> Html Msg
@@ -103,14 +114,10 @@ header model =
               then [ Code, Logo ] else [ Code, NoLogo]
           , onClick <| SmoothScroll (".mainHome", 0)
           ] [ text "[BZ]" ]
-      , div []
-          [ menuIcon
-          ]
+      , menuIcon
       ]
   else
-    div [ class [ HeaderInit ] ]
-      [ menuIcon
-      ]
+    div [ class [ HeaderInit ] ] [ menuIcon ]
 
 home : Html Msg
 home =
@@ -121,6 +128,7 @@ home =
     , p [] [ text "Student and Software Developer" ]
     , a [ class [ Resume ], href "/assets/BlakeZimmermanResume.pdf" ]
         [ text "View My Resume" ]
+    , navIcon "expand_more"
     ]
 
 about : Html Msg

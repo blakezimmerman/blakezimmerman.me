@@ -11,6 +11,7 @@ import Styles.CustomCss as Custom exposing (..)
 
 type CssClasses
   = Code
+  | NavIcon
   | Main
   | HeaderInit
   | Header
@@ -33,8 +34,6 @@ headerBase =
   , margin zero
   , padding2 (pct 1.1) (pct 4)
   , position fixed
-  --, top zero
-  --, left zero
   , displayFlex
   , justifyContent flexEnd
   , alignItems center
@@ -81,6 +80,12 @@ css =
       , fontFeatureSettings (featureTag "calt")
       ]
 
+  , class NavIcon
+    [ width (px 40)
+    , height (px 40)
+    , fill white
+    ]
+
   , class Main
       [ height (pct 100)
       , overflow auto
@@ -112,6 +117,18 @@ css =
           ]
       ]
 
+  , class Menu
+    [ width (pct 50)
+    , maxWidth (px 250)
+    , height (pct 100)
+    , position fixed
+    , right zero
+    , zIndex (int 2)
+    , Custom.boxShadow "0 2px 28px rgba(0,0,0,0.30), 0 2px 28px rgba(0,0,0,0.22)"
+    , backgroundColor red
+    , padding2 (pct 1.1) (pct 2)
+    ]
+
   , class Body
       [ position absolute
       , width (pct 100)
@@ -132,15 +149,14 @@ css =
               , fontSize (Css.rem 4)
               ]
           , h2
-              [ marginTop (Css.rem 4)
-              , marginBottom (Css.rem 1)
+              [ marginTop (vh 10)
+              , marginBottom (vh 1)
               , fontSize (Css.rem 2.2)
               , fontWeight (int 300)
               ]
           , p
               [ marginTop zero
-              , marginBottom (Css.rem 1)
-              , lastChild [ marginBottom (Css.rem 3) ]
+              , marginBottom (vh 1)
               ]
           ]
       ]
@@ -151,7 +167,8 @@ css =
       , color red
       , border zero
       , borderRadius (px 2)
-      , marginTop (Css.rem 3)
+      , marginTop (vh 10)
+      , marginBottom (vh 11)
       , padding2 (Css.rem 0.5) (Css.rem 1)
       , fontSize (Css.rem 1.1)
       , fontWeight (int 300)
