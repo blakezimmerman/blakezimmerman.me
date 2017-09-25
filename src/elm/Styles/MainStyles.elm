@@ -21,6 +21,7 @@ type CssClasses
   | MenuIcon
   | Menu
   | MenuClose
+  | MenuItem
   | Body
   | Home
   | Resume
@@ -33,7 +34,7 @@ headerBase : List Style
 headerBase =
   [ width (pct 92)
   , margin zero
-  , padding2 (pct 1.1) (pct 4)
+  , padding2 (vh 1) (pct 4)
   , position fixed
   , displayFlex
   , justifyContent flexEnd
@@ -54,7 +55,7 @@ logoBase =
   , left zero
   , margin zero
   , height (pct 6)
-  , padding2 (pct 1.1) (pct 4)
+  , padding2 (vh 1) (pct 4)
   , transition "0.6s"
   ]
 
@@ -68,8 +69,9 @@ menuBase =
   , zIndex (int 2)
   , Custom.boxShadow "0 2px 28px rgba(0,0,0,0.30), 0 2px 28px rgba(0,0,0,0.22)"
   , backgroundColor red
-  , padding2 (pct 1.1) (pct 2)
+  , padding2 (pct 1) (pct 2)
   , transition "transform 0.4s ease-in-out"
+  , overflow auto
   ]
 
 
@@ -96,10 +98,10 @@ css =
       ]
 
   , class NavIcon
-    [ width (px 40)
-    , height (px 40)
-    , fill white
-    ]
+      [ width (px 40)
+      , height (px 40)
+      , fill white
+      ]
 
   , class Main
       [ height (pct 100)
@@ -137,6 +139,15 @@ css =
 
   , class MenuClose <| List.append menuBase
       [ transform <| translateX (pct 105) ]
+
+  , class MenuItem
+      [ color white
+      , fontSize (Css.rem 1.5)
+      , textAlign center
+      , borderBottom3 (px 1) solid white
+      , padding (Css.rem 0.5)
+      , margin2 (Css.rem 2) (Css.rem 1.2)
+      ]
 
   , class Body
       [ position absolute
