@@ -80,7 +80,7 @@ view : Model -> Html Msg
 view model =
   div [ class [ Main ] ]
     [ header model
-    , if model.showMenu then menu model else div [] []
+    , menu model
     , div
         [ class [ Body ] ]
         [ home
@@ -96,7 +96,7 @@ navIcon name =
 
 menu : Model -> Html Msg
 menu model =
-  div [ class [ Menu] ]
+  div [ class <| if model.showMenu then [ Menu ] else [ MenuClose ] ]
     [ div [ onClick ToggleMenu ] [ navIcon "close" ]
     ]
 

@@ -20,6 +20,7 @@ type CssClasses
   | NoLogo
   | MenuIcon
   | Menu
+  | MenuClose
   | Body
   | Home
   | Resume
@@ -55,6 +56,20 @@ logoBase =
   , height (pct 6)
   , padding2 (pct 1.1) (pct 4)
   , transition "0.6s"
+  ]
+
+menuBase : List Style
+menuBase =
+  [ width (pct 50)
+  , maxWidth (px 250)
+  , height (pct 100)
+  , position fixed
+  , right zero
+  , zIndex (int 2)
+  , Custom.boxShadow "0 2px 28px rgba(0,0,0,0.30), 0 2px 28px rgba(0,0,0,0.22)"
+  , backgroundColor red
+  , padding2 (pct 1.1) (pct 2)
+  , transition "transform 0.4s ease-in-out"
   ]
 
 
@@ -117,17 +132,11 @@ css =
           ]
       ]
 
-  , class Menu
-    [ width (pct 50)
-    , maxWidth (px 250)
-    , height (pct 100)
-    , position fixed
-    , right zero
-    , zIndex (int 2)
-    , Custom.boxShadow "0 2px 28px rgba(0,0,0,0.30), 0 2px 28px rgba(0,0,0,0.22)"
-    , backgroundColor red
-    , padding2 (pct 1.1) (pct 2)
-    ]
+  , class Menu <| List.append menuBase
+      [ transform <| translateX (pct 0) ]
+
+  , class MenuClose <| List.append menuBase
+      [ transform <| translateX (pct 105) ]
 
   , class Body
       [ position absolute
