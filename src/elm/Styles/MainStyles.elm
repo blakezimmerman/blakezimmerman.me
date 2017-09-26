@@ -87,12 +87,12 @@ css =
       [ height (pct 100)
       , margin zero
       , fontFamilies [ "Raleway", "Helvetica Neue", "sans-serif" ]
-      , fontWeight (int 200)
+      , fontWeight (int 300)
       , fontSize (Css.rem 1.2)
       ]
 
   , class Code
-      [ fontFamilies ["Fira Code"]
+      [ fontFamilies [ "Fira Code" ]
       , fontVariantLigatures contextual
       , fontFeatureSettings (featureTag "calt")
       ]
