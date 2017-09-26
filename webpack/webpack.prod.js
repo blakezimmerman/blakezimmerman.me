@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 const commonConfig = require('./webpack.common.js');
 const path = require('path');
+const compressionPlugin = require("compression-webpack-plugin");
 
 const BUILD_DIR = path.resolve(__dirname, '../dist');
 
@@ -30,6 +31,7 @@ module.exports = webpackMerge(commonConfig, {
       'process.env': {
         NODE_ENV: JSON.stringify('production')
       }
-    })
+    }),
+    new compressionPlugin()
   ]
 });

@@ -1,6 +1,7 @@
 const styles = require('../elm/Stylesheets.elm');
-const resume = require('../assets/BlakeZimmermanResume.pdf');
+const firaCode = require('../assets/FiraCode-Regular.woff');
 const navIcons = require('../assets/navIcons.svg');
+const resume = require('../assets/BlakeZimmermanResume.pdf');
 const smoothScroll = require('./smoothScroll');
 const Elm = require('../elm/Main.elm');
 
