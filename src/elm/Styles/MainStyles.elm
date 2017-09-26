@@ -86,8 +86,8 @@ css =
   , body
       [ height (pct 100)
       , margin zero
-      , fontFamilies [ "Helvetica Neue", "sans-serif" ]
-      , fontWeight (int 300)
+      , fontFamilies [ "Raleway", "Helvetica Neue", "sans-serif" ]
+      , fontWeight (int 200)
       , fontSize (Css.rem 1.2)
       ]
 
