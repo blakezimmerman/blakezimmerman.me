@@ -11,7 +11,7 @@ black : Color
 black = (hex "000000")
 
 red : Color
-red = (hex "E51D1D")
+red = (hex "E62828")
 
 blue : Color
 blue = (hex "3333FF")
