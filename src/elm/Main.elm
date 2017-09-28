@@ -121,13 +121,14 @@ menuItem curHeight item =
 
 menu : Model -> Html Msg
 menu model =
-  div [ class <| if model.showMenu then [ Menu ] else [ MenuClose ] ]
-    [ div [ onClick ToggleMenu ] [ navIcon "close" ]
-    , menuItem model.visibleHeight "About"
-    , menuItem model.visibleHeight "Experience"
-    , menuItem model.visibleHeight "Education"
-    , menuItem model.visibleHeight "Contact"
-    ]
+  div [ class <| if model.showMenu then [ Menu ] else [ MenuClose ] ] <|
+    div [ onClick ToggleMenu ] [ navIcon "close" ] ::
+    List.map (menuItem model.visibleHeight)
+      [ "About"
+      , "Experience"
+      , "Education"
+      , "Contact"
+      ]
 
 menuIcon : Html Msg
 menuIcon =

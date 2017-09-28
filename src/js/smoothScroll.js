@@ -147,6 +147,7 @@ function smoothScroll() {
       // bounding rect is relative to the viewport
       case 'object':
         element = target;
+        if (!element) return;
         stop    = top(element);
       break;
 
@@ -154,6 +155,7 @@ function smoothScroll() {
       // bounding rect is relative to the viewport
       case 'string':
         element = document.querySelector(target);
+        if (!element) return;
         stop    = top(element);
       break;
     }
