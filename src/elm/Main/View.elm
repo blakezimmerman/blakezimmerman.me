@@ -1,92 +1,14 @@
+module Main.View exposing (view)
+
+import Main.Logic exposing (Model, Msg (..))
+import Main.Styles exposing (..)
+
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Html.CssHelpers exposing (withNamespace)
-import Styles.MainStyles exposing (..)
 import Svg exposing (svg, use)
 import Svg.Attributes exposing (xlinkHref)
-import Task
-import Window
-import Ports exposing (..)
-
-
--- INITIALIZE
-
-main : Program Never Model Msg
-main = Html.program
-  { init = init
-  , update = update
-  , subscriptions = subscriptions
-  , view = view
-  }
-
-init : ( Model, Cmd Msg )
-init =
-  ( model
-  , Task.perform GetHeight Window.height
-  )
-
-
--- MODEL
-
-type alias Model =
-  { scrollPercent : Float
-  , visibleHeight : Float
-  , showMenu : Bool
-  }
-
-model : Model
-model =
-  { scrollPercent = 0
-  , visibleHeight = 0
-  , showMenu = False
-  }
-
-
--- UPDATE
-
-type Msg
-  = GetHeight Int
-  | UpdateScrollDetails (Float, Float)
-  | SmoothScroll (String, Float)
-  | ToggleMenu
-  | SelectItem (String, Float)
-
-update : Msg -> Model -> (Model, Cmd msg)
-update msg model =
-  case msg of
-    GetHeight windowHeight ->
-      ({ model | visibleHeight = toFloat windowHeight }
-       , Cmd.none
-      )
-
-    UpdateScrollDetails (yOffset, innerHeight) ->
-      ({ model
-       | scrollPercent = yOffset / innerHeight * 100
-       , visibleHeight = innerHeight
-       }
-       , Cmd.none
-      )
-
-    SmoothScroll args ->
-      (model, smoothScroll args)
-
-    ToggleMenu ->
-      ({ model | showMenu = not model.showMenu }
-       , Cmd.none
-      )
-
-    SelectItem args ->
-      ( { model | showMenu = not model.showMenu }
-      , smoothScroll args
-      )
-
-
--- SUBSCRIPTIONS
-
-subscriptions : Model -> Sub Msg
-subscriptions model =
-  scrollDetails UpdateScrollDetails
 
 
 -- VIEW

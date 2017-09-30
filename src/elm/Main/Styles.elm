@@ -1,10 +1,10 @@
-module Styles.MainStyles exposing (..)
+module Main.Styles exposing (..)
 
 import Css exposing (..)
 import Css.Elements exposing (..)
 import Css.Namespace exposing (namespace)
-import Styles.Colors as Colors exposing (..)
-import Styles.CustomCss as Custom exposing (..)
+import SharedStyles.Colors as Colors exposing (..)
+import SharedStyles.CustomCss as Custom exposing (..)
 
 
 -- CLASSES

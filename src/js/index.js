@@ -3,7 +3,7 @@ const firaCode = require('../assets/FiraCode-Regular.woff');
 const navIcons = require('../assets/navIcons.svg');
 const resume = require('../assets/BlakeZimmermanResume.pdf');
 const smoothScroll = require('./smoothScroll');
-const Elm = require('../elm/Main.elm');
+const Elm = require('../elm/Entry.elm');
 
 const app = Elm.Main.embed(document.getElementById('main'));
 
