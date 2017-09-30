@@ -18,9 +18,11 @@ type CssClasses
   | HeaderContainer
   | Logo
   | NoLogo
+  | LogoButton
   | MenuIcon
   | Menu
   | MenuClose
+  | CloseButton
   | MenuItem
   | Body
   | Home
@@ -53,10 +55,10 @@ logoBase =
   , position fixed
   , top zero
   , left zero
-  , margin zero
   , height (pct 6)
-  , padding2 (vh 1) (pct 4)
+  , margin2 (vh 1) (pct 4)
   , transition "0.6s"
+  , color white
   ]
 
 menuBase : List Style
@@ -70,8 +72,17 @@ menuBase =
   , Custom.boxShadow "0 2px 28px rgba(0,0,0,0.30), 0 2px 28px rgba(0,0,0,0.22)"
   , backgroundColor red
   , padding2 (pct 1) (pct 2)
+  , displayFlex
+  , flexDirection column
   , transition "transform 0.4s ease-in-out"
   , overflow auto
+  ]
+
+clearButton : List Style
+clearButton =
+  [ border zero
+  , backgroundColor <| rgba 0 0 0 0
+  , outline none
   ]
 
 
@@ -108,23 +119,33 @@ css =
       , overflow auto
       ]
 
-  , class HeaderInit <| List.append headerBase
+  , class HeaderInit <| headerBase ++
       [ height (pct 10)
       , fontSize (Css.rem 1.2)
       ]
 
-  , class Header <| List.append headerBase
+  , class Header <| headerBase ++
       [ height (pct 6)
       , Custom.boxShadow "0 8px 16px rgba(0,0,0,0.19), 0 5px 5px rgba(0,0,0,0.23)"
       , fontSize (Css.rem 1)
       ]
 
-  , class Logo logoBase
+  , class LogoButton <| clearButton ++
+      [ position fixed
+      , top zero
+      , left zero
+      , height (pct 6)
+      , margin2 (vh 1) (pct 4)
+      , children
+          [ class Logo <| logoBase
+          , class NoLogo <| logoBase ++ [ opacity zero ]
+          ]
+      ]
 
-  , class NoLogo <| List.append logoBase [ opacity zero ]
-
-  , class MenuIcon
-      [ children
+  , class MenuIcon <| clearButton ++
+      [ margin zero
+      , padding zero
+      , children
           [ div
               [ width (px 30)
               , height (px 3)
@@ -134,15 +155,19 @@ css =
           ]
       ]
 
-  , class Menu <| List.append menuBase
+  , class Menu <| menuBase ++
       [ transform <| translateX (pct 0) ]
 
-  , class MenuClose <| List.append menuBase
+  , class MenuClose <| menuBase ++
       [ transform <| translateX (pct 105) ]
 
-  , class MenuItem
+  , class CloseButton <| clearButton ++
+      [ textAlign left ]
+
+  , class MenuItem <| clearButton ++
       [ color white
       , fontSize (Css.rem 1.5)
+      , fontWeight (int 300)
       , textAlign center
       , borderBottom3 (px 1) solid white
       , padding (Css.rem 0.5)

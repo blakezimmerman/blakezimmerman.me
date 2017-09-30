@@ -113,7 +113,7 @@ navIcon name =
 
 menuItem : Float -> String -> Html Msg
 menuItem curHeight item =
-  div
+  button
     [ class [ MenuItem ]
     , onClick <| SelectItem (".main" ++ item, curHeight * -0.06)
     ]
@@ -122,7 +122,9 @@ menuItem curHeight item =
 menu : Model -> Html Msg
 menu model =
   div [ class <| if model.showMenu then [ Menu ] else [ MenuClose ] ] <|
-    div [ onClick ToggleMenu ] [ navIcon "close" ] ::
+    button
+      [ class [ CloseButton ], onClick ToggleMenu ]
+      [ navIcon "close" ] ::
     List.map (menuItem model.visibleHeight)
       [ "About"
       , "Experience"
@@ -130,24 +132,35 @@ menu model =
       , "Contact"
       ]
 
-menuIcon : Html Msg
-menuIcon =
-  div [ class [ MenuIcon ], onClick ToggleMenu ]
+menuButton : Html Msg
+menuButton =
+  button [ class [ MenuIcon ], onClick ToggleMenu ]
     [ div [] [], div [] [], div [] [] ]
+
+homeButton : Model -> Html Msg
+homeButton model =
+  button
+    [ class [ LogoButton ]
+    , onClick <| SmoothScroll (".mainHome", 0)
+    , disabled <| model.scrollPercent < 15
+    ]
+    [ h1
+        [ class <| if model.scrollPercent > 15
+            then [ Code, Logo ]
+            else [ Code, NoLogo]
+        ]
+        [ text "[BZ]" ]
+    ]
 
 header : Model -> Html Msg
 header model =
   if model.scrollPercent > 0 then
     div [ class [ Header ] ]
-      [ h1
-          [ class <| if model.scrollPercent > 15
-              then [ Code, Logo ] else [ Code, NoLogo]
-          , onClick <| SmoothScroll (".mainHome", 0)
-          ] [ text "[BZ]" ]
-      , menuIcon
+      [ homeButton model
+      , menuButton
       ]
   else
-    div [ class [ HeaderInit ] ] [ menuIcon ]
+    div [ class [ HeaderInit ] ] [ menuButton ]
 
 home : Html Msg
 home =
@@ -164,7 +177,7 @@ home =
 about : Html Msg
 about =
   div [ class [ About ] ]
-    [ h2 [] [ a [ id "About"] [], text "About Me" ]
+    [ h2 [] [ text "About Me" ]
     , p [] [ text "Sample Text" ]
     , p [] [ text "Sample Text" ]
     , p [] [ text "Sample Text" ]
