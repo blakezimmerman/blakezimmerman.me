@@ -28,6 +28,7 @@ type CssClasses
   | Home
   | Resume
   | About
+  | MyPicture
 
 
 -- CLASS BASES
@@ -171,7 +172,7 @@ css =
       , textAlign center
       , borderBottom3 (px 1) solid white
       , padding (Css.rem 0.5)
-      , margin2 (Css.rem 2) (Css.rem 1.2)
+      , margin2 (vh 3) (vh 2)
       ]
 
   , class Body
@@ -228,11 +229,22 @@ css =
       , backgroundColor white
       , children
           [ h2
-              [ marginTop (Css.rem 1)
+              [ marginTop (Css.rem 2)
               , marginBottom (Css.rem 1)
               , fontSize (Css.rem 2.2)
               , fontWeight (int 300)
               ]
+          , p
+              [ padding (vw 5)
+              , textAlign center
+              ]
           ]
       ]
+
+    , class MyPicture
+        [ width (Css.rem 12)
+        , borderRadius (pct 50)
+        , margin (vh 1)
+        , Custom.boxShadow "0 12px 25px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)"
+        ]
   ]

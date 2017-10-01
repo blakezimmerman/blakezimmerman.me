@@ -1,7 +1,10 @@
 const webpackMerge = require('webpack-merge');
 const commonConfig = require('./webpack.common.js');
+const path = require('path');
 
-module.exports = webpackMerge(commonConfig, {
+const ROOT = path.resolve(__dirname, '../');
+
+module.exports = env => webpackMerge(commonConfig, {
   devtool: 'eval',
 
   module: {
@@ -16,7 +19,8 @@ module.exports = webpackMerge(commonConfig, {
             options: {
                 verbose: true,
                 warn: true,
-                debug: true
+                cwd: ROOT,
+                debug: env == 'debug'
             }
           }
         ]

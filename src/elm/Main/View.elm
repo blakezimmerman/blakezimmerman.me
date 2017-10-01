@@ -100,16 +100,10 @@ about : Html Msg
 about =
   div [ class [ About ] ]
     [ h2 [] [ text "About Me" ]
-    , p [] [ text "Sample Text" ]
-    , p [] [ text "Sample Text" ]
-    , p [] [ text "Sample Text" ]
-    , p [] [ text "Sample Text" ]
-    , p [] [ text "Sample Text" ]
-    , p [] [ text "Sample Text" ]
-    , p [] [ text "Sample Text" ]
-    , p [] [ text "Sample Text" ]
-    , p [] [ text "Sample Text" ]
-    , p [] [ text "Sample Text" ]
-    , p [] [ text "Sample Text" ]
-    , p [] [ text "Sample Text" ]
+    , img [ class [ MyPicture ], src "/assets/blake.jpg" ] []
+    , p []
+        [text """
+          Hi, my name is Blake! I'm a student at Stevens Institute
+          of Technology, and an aspiring software developer.
+        """]
     ]

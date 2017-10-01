@@ -4,7 +4,8 @@
   "description": "My personal website",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --config webpack/webpack.dev.js --hot --inline --progress --port 8080",
+    "start": "webpack-dev-server --config webpack/webpack.dev.js --env=dev --hot --inline --progress --port 8080",
+    "start:debug": "webpack-dev-server --config webpack/webpack.dev.js --env=debug --hot --inline --progress --port 8080",
     "build": "rimraf dist && webpack --config webpack/webpack.prod.js --bail"
   },
   "author": "Blake Zimmerman",
