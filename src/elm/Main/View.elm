@@ -24,6 +24,7 @@ view model =
         [ class [ Body ] ]
         [ home
         , about
+        , experience
         ]
     ]
 
@@ -96,14 +97,39 @@ home =
     , navIcon "expand_more"
     ]
 
+divider : Html Msg
+divider =
+  div [ class [ Divider ] ] []
+
 about : Html Msg
 about =
   div [ class [ About ] ]
     [ h2 [] [ text "About Me" ]
     , img [ class [ MyPicture ], src "/assets/blake.jpg" ] []
-    , p []
-        [text """
-          Hi, my name is Blake! I'm a student at Stevens Institute
-          of Technology, and an aspiring software developer.
-        """]
+    , div [ class [ TextContainer ] ]
+        [ p []
+            [ text
+                """
+                Hi, I'm Blake! I am currently a student at Stevens Institute
+                of Technology pursuing a B.E. in Software Engineering and a minor
+                in Computer Science.
+                """
+            ]
+        , p []
+            [ text
+                """
+                I am most interested in frontend
+                development and functional programming. I always enjoy reading
+                about emerging technologies in these fields and researching how
+                I can leverage them to create better software experiences.
+                """
+            ]
+        ]
+    , divider
+    ]
+
+experience : Html Msg
+experience =
+  div [ class [ Experience ] ]
+    [ h2 [] [ text "Experience" ]
     ]

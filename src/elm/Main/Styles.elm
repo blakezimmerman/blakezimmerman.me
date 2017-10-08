@@ -29,6 +29,9 @@ type CssClasses
   | Resume
   | About
   | MyPicture
+  | TextContainer
+  | Divider
+  | Experience
 
 
 -- CLASS BASES
@@ -84,6 +87,23 @@ clearButton =
   [ border zero
   , backgroundColor <| rgba 0 0 0 0
   , outline none
+  ]
+
+contentBase : List Style
+contentBase =
+  [ displayFlex
+  , flexDirection column
+  , alignItems center
+  , color black
+  , backgroundColor white
+  , children
+      [ h2
+          [ marginTop (Css.rem 2)
+          , marginBottom (Css.rem 1)
+          , fontSize (Css.rem 2.2)
+          , fontWeight (int 300)
+          ]
+      ]
   ]
 
 
@@ -221,30 +241,35 @@ css =
       , textDecoration none
       ]
 
-  , class About
-      [ displayFlex
-      , flexDirection column
-      , alignItems center
-      , color black
-      , backgroundColor white
+  , class About <| contentBase
+
+  , class MyPicture
+      [ width (Css.rem 12)
+      , borderRadius (pct 50)
+      , margin (vh 1)
+      , Custom.boxShadow "0 12px 25px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)"
+      ]
+
+  , class TextContainer
+      [ margin2 (Css.rem 2) zero
       , children
-          [ h2
-              [ marginTop (Css.rem 2)
-              , marginBottom (Css.rem 1)
-              , fontSize (Css.rem 2.2)
-              , fontWeight (int 300)
-              ]
-          , p
-              [ padding (vw 5)
+          [ p
+              [ padding2 zero (pct 5)
+              , margin2 (Css.rem 0.5) zero
+              , maxWidth (px 600)
               , textAlign center
               ]
           ]
       ]
 
-    , class MyPicture
-        [ width (Css.rem 12)
-        , borderRadius (pct 50)
-        , margin (vh 1)
-        , Custom.boxShadow "0 12px 25px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)"
-        ]
+  , class Divider
+      [ height (px 5)
+      , width (pct 90)
+      , margin2 (pct 0) (pct 5)
+      , backgroundColor red
+      , borderRadius (px 1)
+      , boxShadow4 zero (px 3) (px 6) (rgba 0 0 0 0.2)
+      ]
+
+    , class Experience <| contentBase
   ]
