@@ -128,8 +128,42 @@ about =
     , divider
     ]
 
+type alias ExpItemDetails =
+  { color : String
+  , logo : String
+  }
+
+jetDetails : ExpItemDetails
+jetDetails =
+  { color = "rgb(130, 0, 255)"
+  , logo = "/assets/jetlogo.jpg"
+  }
+
+baeDetails : ExpItemDetails
+baeDetails =
+  { color = "rgb(237, 28, 59)"
+  , logo = "/assets/baelogo.jpg"
+  }
+
+stevensDetails : ExpItemDetails
+stevensDetails =
+  { color = "rgb(179, 5, 56)"
+  , logo = "/assets/stevenslogo.jpg"
+  }
+
 experience : Html Msg
 experience =
-  div [ class [ Experience ] ]
-    [ h2 [] [ text "Experience" ]
+  div [ class [ Experience ] ] <|
+    h2 [] [ text "Experience" ] ::
+    List.map expItem
+      [ jetDetails
+      , baeDetails
+      , stevensDetails
+      ]
+
+expItem : ExpItemDetails -> Html Msg
+expItem details =
+  div [ class [ ExpItem ] ]
+    [ div [ class [ ExpLogo ] ] [ img [ src details.logo ] [] ]
+    , div [ class [ ExpDetails ], style [ ("backgroundColor", details.color) ] ] []
     ]

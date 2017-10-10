@@ -32,6 +32,10 @@ type CssClasses
   | TextContainer
   | Divider
   | Experience
+  | ExpItem
+  | ExpLogo
+  | ExpDetails
+  | ExpDetailsExapand
 
 
 -- CLASS BASES
@@ -272,4 +276,26 @@ css =
       ]
 
     , class Experience <| contentBase
+
+    , class ExpItem
+        [ width (pct 90)
+        , maxWidth (px 800)
+        , marginBottom (vh 4)
+        , borderRadius (px 1)
+        , border3 (px 1) solid (rgb 230 230 230)
+        --, boxShadow4 zero (px 4) (px 8) (rgba 0 0 0 0.22)
+        ]
+
+    , class ExpLogo
+        [ height (vh 10)
+        , displayFlex
+        , justifyContent center
+        , children
+            [ img [ height (pct 100) ]
+            ]
+        ]
+
+    , class ExpDetails
+        [ height (vh 10)
+        ]
   ]

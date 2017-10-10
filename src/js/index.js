@@ -3,6 +3,9 @@ const firaCode = require('../assets/FiraCode-Regular.woff');
 const navIcons = require('../assets/navIcons.svg');
 const resume = require('../assets/BlakeZimmermanResume.pdf');
 const myPicture = require('../assets/blake.jpg');
+const jetLogo = require('../assets/jetlogo.jpg');
+const baeLogo = require('../assets/baelogo.jpg');
+const stevensLogo = require('../assets/stevenslogo.jpg');
 const smoothScroll = require('./smoothScroll');
 const Elm = require('../elm/Entry.elm');
 
