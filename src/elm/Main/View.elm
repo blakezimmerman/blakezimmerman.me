@@ -1,7 +1,8 @@
 module Main.View exposing (view)
 
-import Main.Logic exposing (Model, Msg (..))
+import Main.Logic exposing (Model, Msg (..), isExpanded)
 import Main.Styles exposing (..)
+import Details exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -24,7 +25,7 @@ view model =
         [ class [ Body ] ]
         [ home
         , about
-        , experience
+        , experience model.expandedCards
         ]
     ]
 
@@ -118,52 +119,42 @@ about =
         , p []
             [ text
                 """
-                I am most interested in frontend
-                development and functional programming. I always enjoy reading
-                about emerging technologies in these fields and researching how
-                I can leverage them to create better software experiences.
+                I am most interested in frontend development and functional programming.
+                I always enjoy reading about emerging technologies in these fields and
+                researching how I can leverage them to create better software experiences.
                 """
             ]
         ]
     , divider
     ]
 
-type alias ExpItemDetails =
-  { color : String
-  , logo : String
-  }
-
-jetDetails : ExpItemDetails
-jetDetails =
-  { color = "rgb(130, 0, 255)"
-  , logo = "/assets/jetlogo.jpg"
-  }
-
-baeDetails : ExpItemDetails
-baeDetails =
-  { color = "rgb(237, 28, 59)"
-  , logo = "/assets/baelogo.jpg"
-  }
-
-stevensDetails : ExpItemDetails
-stevensDetails =
-  { color = "rgb(179, 5, 56)"
-  , logo = "/assets/stevenslogo.jpg"
-  }
-
-experience : Html Msg
-experience =
+experience : List DetailCard -> Html Msg
+experience expandedCards =
   div [ class [ Experience ] ] <|
     h2 [] [ text "Experience" ] ::
-    List.map expItem
+    List.map (expItem expandedCards)
       [ jetDetails
       , baeDetails
       , stevensDetails
       ]
 
-expItem : ExpItemDetails -> Html Msg
-expItem details =
+expItem : List DetailCard -> ExpItemDetails -> Html Msg
+expItem expandedCards details =
   div [ class [ ExpItem ] ]
     [ div [ class [ ExpLogo ] ] [ img [ src details.logo ] [] ]
-    , div [ class [ ExpDetails ], style [ ("backgroundColor", details.color) ] ] []
+    , div [ class [ ExpDetails ], style [ ("backgroundColor", details.color) ] ]
+        [ p [] [ text details.position ]
+        , p [] [ text details.timePeriod ]
+        , if not <| isExpanded expandedCards details.card
+            then
+              button [ class [ SeeMore ], onClick <| ExpandCard details.card ]
+                [ text "See more details"
+                , navIcon "expand_more"
+                ]
+            else
+              button [ class [ SeeMore ], onClick <| CollapseCard details.card ]
+                [ text "Hide details"
+                , navIcon "expand_less"
+                ]
+        ]
     ]

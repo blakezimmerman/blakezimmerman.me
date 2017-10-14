@@ -1,8 +1,9 @@
-module Main.Logic exposing (init, model, update, subscriptions, Model, Msg (..))
+module Main.Logic exposing (..)
 
 import Task
 import Window
 import Ports exposing (..)
+import Details exposing (..)
 
 
 -- INITIALIZE
@@ -20,6 +21,7 @@ type alias Model =
   { scrollPercent : Float
   , visibleHeight : Float
   , showMenu : Bool
+  , expandedCards : List DetailCard
   }
 
 model : Model
@@ -27,6 +29,7 @@ model =
   { scrollPercent = 0
   , visibleHeight = 0
   , showMenu = False
+  , expandedCards = []
   }
 
 
@@ -38,6 +41,8 @@ type Msg
   | SmoothScroll (String, Float)
   | ToggleMenu
   | SelectItem (String, Float)
+  | ExpandCard DetailCard
+  | CollapseCard DetailCard
 
 update : Msg -> Model -> (Model, Cmd msg)
 update msg model =
@@ -68,9 +73,26 @@ update msg model =
       , smoothScroll args
       )
 
+    ExpandCard card ->
+      ( { model | expandedCards = card :: model.expandedCards }
+      , Cmd.none
+      )
+
+    CollapseCard card ->
+      ( { model | expandedCards = List.filter (\x -> x /= card) model.expandedCards }
+      , Cmd.none
+      )
+
 
 -- SUBSCRIPTIONS
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
   scrollDetails UpdateScrollDetails
+
+
+-- MISC
+
+isExpanded : List DetailCard -> DetailCard -> Bool
+isExpanded list card =
+  List.any (\x -> x == card) list

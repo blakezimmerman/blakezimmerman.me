@@ -36,6 +36,7 @@ type CssClasses
   | ExpLogo
   | ExpDetails
   | ExpDetailsExapand
+  | SeeMore
 
 
 -- CLASS BASES
@@ -283,11 +284,12 @@ css =
         , marginBottom (vh 4)
         , borderRadius (px 1)
         , border3 (px 1) solid (rgb 230 230 230)
+        , transition "0.6s"
         --, boxShadow4 zero (px 4) (px 8) (rgba 0 0 0 0.22)
         ]
 
     , class ExpLogo
-        [ height (vh 10)
+        [ height (Css.rem 5)
         , displayFlex
         , justifyContent center
         , children
@@ -296,6 +298,36 @@ css =
         ]
 
     , class ExpDetails
-        [ height (vh 10)
+        [ height (Css.rem 6)
+        , color white
+        , fontSize (Css.rem 1)
+        , displayFlex
+        , flexDirection column
+        , justifyContent center
+        , alignItems center
+        , children
+            [ p [ margin zero ] ]
+        ]
+
+    , class SeeMore
+        [ backgroundColor clear
+        , outline zero
+        , border zero
+        , cursor pointer
+        , color white
+        , fontWeight (int 300)
+        , paddingTop (Css.rem 0.7)
+        , fontSize (Css.rem 0.9)
+        , fontStyle italic
+        , displayFlex
+        , flexDirection column
+        , alignItems center
+        , children
+            [ svg
+                [ width (px 20)
+                , height (px 20)
+                , marginBottom (px -5)
+                ]
+            ]
         ]
   ]
