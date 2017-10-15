@@ -139,22 +139,37 @@ experience expandedCards =
       ]
 
 expItem : List DetailCard -> ExpItemDetails -> Html Msg
-expItem expandedCards details =
+expItem expandedCards detailsItem =
   div [ class [ ExpItem ] ]
-    [ div [ class [ ExpLogo ] ] [ img [ src details.logo ] [] ]
-    , div [ class [ ExpDetails ], style [ ("backgroundColor", details.color) ] ]
-        [ p [] [ text details.position ]
-        , p [] [ text details.timePeriod ]
-        , if not <| isExpanded expandedCards details.card
+    [ div [ class [ ExpLogo ] ] [ img [ src detailsItem.logo ] [] ]
+    , div [ class [ ExpDetails ], style [ ("backgroundColor", detailsItem.color) ] ]
+        [ p [] [ text detailsItem.position ]
+        , p [] [ text detailsItem.timePeriod ]
+        , if not (isExpanded expandedCards detailsItem.card)
             then
-              button [ class [ SeeMore ], onClick <| ExpandCard details.card ]
+              button
+                [ class [ ToggleDetails ]
+                , onClick <| ExpandCard detailsItem.card
+                ]
                 [ text "See more details"
                 , navIcon "expand_more"
                 ]
             else
-              button [ class [ SeeMore ], onClick <| CollapseCard details.card ]
+              button
+                [ class [ ToggleDetails ]
+                , onClick <| CollapseCard detailsItem.card
+                ]
                 [ text "Hide details"
                 , navIcon "expand_less"
                 ]
+        , div [ class [ MoreDetails ], id detailsItem.card ]
+            (List.map detailBullet detailsItem.details)
         ]
+    ]
+
+detailBullet : String -> Html Msg
+detailBullet detailText =
+  div [ class [ DetailBullet ] ]
+    [ div [ class [ Code ] ] [ text "|>" ]
+    , div [] [ text detailText ]
     ]

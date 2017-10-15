@@ -21,3 +21,11 @@ app.ports.smoothScroll.subscribe(function([target, offset]) {
     offset
   });
 });
+
+app.ports.resizeHeight.subscribe(function(id) {
+  const elem = document.getElementById(id);
+
+  elem.style.height = elem.clientHeight
+    ? 0
+    : elem.scrollHeight + 'px';
+});

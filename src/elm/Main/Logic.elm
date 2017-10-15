@@ -75,12 +75,12 @@ update msg model =
 
     ExpandCard card ->
       ( { model | expandedCards = card :: model.expandedCards }
-      , Cmd.none
+      , resizeHeight <| toString card
       )
 
     CollapseCard card ->
       ( { model | expandedCards = List.filter (\x -> x /= card) model.expandedCards }
-      , Cmd.none
+      , resizeHeight <| toString card
       )
 
 

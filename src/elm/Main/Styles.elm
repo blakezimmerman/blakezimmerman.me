@@ -36,7 +36,9 @@ type CssClasses
   | ExpLogo
   | ExpDetails
   | ExpDetailsExapand
-  | SeeMore
+  | ToggleDetails
+  | MoreDetails
+  | DetailBullet
 
 
 -- CLASS BASES
@@ -284,8 +286,6 @@ css =
         , marginBottom (vh 4)
         , borderRadius (px 1)
         , border3 (px 1) solid (rgb 230 230 230)
-        , transition "0.6s"
-        --, boxShadow4 zero (px 4) (px 8) (rgba 0 0 0 0.22)
         ]
 
     , class ExpLogo
@@ -298,18 +298,18 @@ css =
         ]
 
     , class ExpDetails
-        [ height (Css.rem 6)
-        , color white
+        [ color white
         , fontSize (Css.rem 1)
         , displayFlex
         , flexDirection column
         , justifyContent center
         , alignItems center
+        , padding2 (Css.rem 0.5) zero
         , children
             [ p [ margin zero ] ]
         ]
 
-    , class SeeMore
+    , class ToggleDetails
         [ backgroundColor clear
         , outline zero
         , border zero
@@ -328,6 +328,22 @@ css =
                 , height (px 20)
                 , marginBottom (px -5)
                 ]
+            ]
+        ]
+
+    , class MoreDetails
+        [ height zero
+        , width (pct 94)
+        , overflow hidden
+        , transition "height 0.4s ease-in-out"
+        ]
+
+    , class DetailBullet
+        [ displayFlex
+        , margin2 (Css.rem 0.5) zero
+        , children
+            [ class Code
+                [ margin4 zero (Css.rem 0.4) zero zero ]
             ]
         ]
   ]
