@@ -4,6 +4,10 @@ type DetailCard
   = JetCard
   | BaeCard
   | StevensCard
+  | StevensEduCard
+
+
+-- EXPERIENCE
 
 type alias ExpItemDetails =
   { card : DetailCard
@@ -53,8 +57,48 @@ stevensDetails =
   , position = "Learning Technology Assistant"
   , timePeriod = "January 2015 - December 2016"
   , details =
-      [ "Created 3D models of classrooms in preparation of renovations"
+      [ "Created 3D models of classrooms in preparation of renovations using SketchUp"
+      , "Helped plan and execute new AV initiatives campus wide"
+      , "Designed instructional infographics for various campus AV technologies using Adobe InDesign"
       , "Assisted with campus presentations"
       , "Provided AV support in classrooms"
+      ]
+  }
+
+
+-- EDUCATION
+
+type alias EduItemDetails =
+  { card : DetailCard
+  , color : String
+  , logo : String
+  , degree : String
+  , timePeriod : String
+  , major : String
+  , minor : String
+  , coursework : List String
+  }
+
+stevensEduDetails : EduItemDetails
+stevensEduDetails =
+  { card = StevensEduCard
+  , color = "rgb(179, 5, 56)"
+  , logo = "/assets/stevenslogo.jpg"
+  , degree = "Bachelors of Engineering"
+  , timePeriod = "August 2014 - May 2019"
+  , major = "Software Engineering"
+  , minor = "Computer Science"
+  , coursework =
+      [ "Algorithms"
+      , "Web Programming"
+      , "Human Computer Interaction"
+      , "Object-Oriented Software Engineering"
+      , "Data Structures"
+      , "Agile Methods for Software Development"
+      , "Software Requirements Analysis & Engineering"
+      , "Discrete Math"
+      , "Differential Equations"
+      , "Probability and Statistics for Engineers"
+      , "Engineering Design I-V"
       ]
   }

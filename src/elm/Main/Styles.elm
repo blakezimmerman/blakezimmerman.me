@@ -33,12 +33,13 @@ type CssClasses
   | Divider
   | Experience
   | ExpItem
-  | ExpLogo
+  | DetailsLogo
   | ExpDetails
-  | ExpDetailsExapand
   | ToggleDetails
   | MoreDetails
   | DetailBullet
+  | Education
+  | MajorMinor
 
 
 -- CLASS BASES
@@ -105,8 +106,8 @@ contentBase =
   , backgroundColor white
   , children
       [ h2
-          [ marginTop (Css.rem 2)
-          , marginBottom (Css.rem 1)
+          [ marginTop (Css.rem 2.5)
+          , marginBottom zero
           , fontSize (Css.rem 2.2)
           , fontWeight (int 300)
           ]
@@ -253,7 +254,7 @@ css =
   , class MyPicture
       [ width (Css.rem 12)
       , borderRadius (pct 50)
-      , margin (vh 1)
+      , marginTop (Css.rem 2)
       , Custom.boxShadow "0 12px 25px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)"
       ]
 
@@ -278,17 +279,20 @@ css =
       , boxShadow4 zero (px 3) (px 6) (rgba 0 0 0 0.2)
       ]
 
-    , class Experience <| contentBase
+    , class Experience <| contentBase ++
+        [ children
+            [ class Divider [ marginTop (Css.rem 2.5) ] ]
+        ]
 
     , class ExpItem
         [ width (pct 90)
         , maxWidth (px 800)
-        , marginBottom (vh 4)
+        , marginTop (vh 4)
         , borderRadius (px 1)
         , border3 (px 1) solid (rgb 230 230 230)
         ]
 
-    , class ExpLogo
+    , class DetailsLogo
         [ height (Css.rem 5)
         , displayFlex
         , justifyContent center
@@ -344,6 +348,21 @@ css =
         , children
             [ class Code
                 [ margin4 zero (Css.rem 0.4) zero zero ]
+            ]
+        ]
+
+    , class Education <| contentBase ++
+        [ children
+            [ class Divider [ marginTop (Css.rem 2.5) ] ]
+        ]
+
+    , class MajorMinor
+        [ margin2 (Css.rem 0.5) zero
+        , children
+            [ p
+                [ display inline
+                , firstChild [ margin4 zero (Css.rem 1) zero zero ]
+                ]
             ]
         ]
   ]
