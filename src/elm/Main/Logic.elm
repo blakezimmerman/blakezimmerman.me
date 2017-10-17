@@ -69,7 +69,7 @@ update msg model =
       )
 
     SelectItem args ->
-      ( { model | showMenu = not model.showMenu }
+      ( { model | showMenu = False }
       , smoothScroll args
       )
 

@@ -23,7 +23,7 @@ view model =
     , menu model
     , div
         [ class [ Body ] ]
-        [ home
+        [ home model.visibleHeight
         , about
         , experience model.expandedCards
         , education model.expandedCards
@@ -87,21 +87,27 @@ header model =
   else
     div [ class [ HeaderInit ] ] [ menuButton ]
 
-home : Html Msg
-home =
+home : Float -> Html Msg
+home curHeight =
   div [ class [ Home ] ]
     [ h1 [ class [ Code ] ] [ text "[BZ]" ]
-    , h2 [] [ text "Blake Zimmerman" ]
-    , p [ class [ Code ] ] [ text "BZ :: Coffee -> Code" ]
-    , p [] [ text "Student and Software Developer" ]
-    , a [ class [ Resume ], href "/assets/BlakeZimmermanResume.pdf" ]
-        [ text "View My Resume" ]
-    , navIcon "expand_more"
+    , div [ class [ NameContainer ] ]
+        [ h2 [] [ text "Blake Zimmerman" ]
+        , p [ class [ Code ] ] [ text "BZ :: Coffee -> Code" ]
+        , p [] [ text "Student and Software Developer" ]
+        ]
+    , div [ class [ ResumeContainer ] ]
+        [ a [ class [ Resume ], href "/assets/BlakeZimmermanResume.pdf" ]
+            [ text "View My Resume" ]
+        ]
+    , div [ class [ ScrollButtonContainer ] ]
+        [ div
+            [ class [ ScrollButton ]
+            , onClick <| SelectItem (".mainAbout", curHeight * -0.06)
+            ]
+            [ navIcon "expand_more" ]
+        ]
     ]
-
-divider : Html Msg
-divider =
-  div [ class [ Divider ] ] []
 
 about : Html Msg
 about =
@@ -126,7 +132,6 @@ about =
                 """
             ]
         ]
-    , divider
     ]
 
 toggleDetailsButton : List DetailCard -> DetailCard -> Html Msg
@@ -165,7 +170,6 @@ experience expandedCards =
       , baeDetails
       , stevensDetails
       ]
-    ++ [ divider ]
 
 expItem : List DetailCard -> ExpItemDetails -> Html Msg
 expItem expandedCards detailsItem =
@@ -187,7 +191,6 @@ education expandedCards =
     List.map (eduItem expandedCards)
       [ stevensEduDetails
       ]
-    ++ [ divider ]
 
 eduItem : List DetailCard -> EduItemDetails -> Html Msg
 eduItem expandedCards detailsItem =

@@ -26,11 +26,14 @@ type CssClasses
   | MenuItem
   | Body
   | Home
+  | NameContainer
+  | ResumeContainer
   | Resume
+  | ScrollButtonContainer
+  | ScrollButton
   | About
   | MyPicture
   | TextContainer
-  | Divider
   | Experience
   | ExpItem
   | DetailsLogo
@@ -54,7 +57,7 @@ headerBase =
   , justifyContent flexEnd
   , alignItems center
   , color white
-  , backgroundColor red
+  , backgroundColor primary
   , transition "0.5s"
   , zIndex (int 1)
   ]
@@ -82,7 +85,7 @@ menuBase =
   , right zero
   , zIndex (int 2)
   , Custom.boxShadow "0 2px 28px rgba(0,0,0,0.30), 0 2px 28px rgba(0,0,0,0.22)"
-  , backgroundColor red
+  , backgroundColor primary
   , padding2 (pct 1) (pct 2)
   , displayFlex
   , flexDirection column
@@ -102,18 +105,24 @@ contentBase =
   [ displayFlex
   , flexDirection column
   , alignItems center
-  , color black
+  , marginBottom (Css.rem 1)
   , backgroundColor white
   , children
       [ h2
           [ marginTop (Css.rem 2.5)
           , marginBottom zero
           , fontSize (Css.rem 2.2)
-          , fontWeight (int 300)
+          , fontWeight (int 200)
           ]
       ]
   ]
 
+centerFlex : List Style
+centerFlex =
+  [ displayFlex
+  , justifyContent center
+  , alignItems center
+  ]
 
 -- STYLESHEET
 
@@ -121,7 +130,9 @@ css : Stylesheet
 css =
   (stylesheet << namespace "main")
   [ html
-      [ height (pct 100) ]
+      [ height (pct 100)
+      , color darkGray
+      ]
 
   , body
       [ height (pct 100)
@@ -215,38 +226,55 @@ css =
       , flexDirection column
       , alignItems center
       , color white
-      , backgroundColor red
+      , backgroundColor primary
       , children
-          [ h1
-              [ marginTop (vh 15)
-              , marginBottom zero
+          [ h1 <| centerFlex ++
+              [ height (vh 25)
+              , margin4 (vh 10) zero zero zero
               , fontSize (Css.rem 4)
-              ]
-          , h2
-              [ marginTop (vh 10)
-              , marginBottom (vh 1)
-              , fontSize (Css.rem 2.2)
-              , fontWeight (int 300)
-              ]
-          , p
-              [ marginTop zero
-              , marginBottom (vh 1)
               ]
           ]
       ]
 
+  , class NameContainer <| centerFlex ++
+      [ flexDirection column
+      , height (vh 20)
+      , children
+          [ h2 <| centerFlex ++
+              [ margin2 (Css.rem 0.25) zero
+              , fontSize (Css.rem 2.2)
+              , fontWeight (int 300)
+              ]
+            , p <| centerFlex ++
+              [ margin2 (Css.rem 0.25) zero ]
+          ]
+      ]
+
+  , class ResumeContainer <| centerFlex ++
+      [ height (vh 20) ]
+
   , class Resume
       [ cursor pointer
       , backgroundColor white
-      , color red
+      , color primary
       , border zero
       , borderRadius (px 2)
-      , marginTop (vh 10)
-      , marginBottom (vh 11)
       , padding2 (Css.rem 0.5) (Css.rem 1)
       , fontSize (Css.rem 1.1)
       , fontWeight (int 300)
       , textDecoration none
+      ]
+
+  , class ScrollButtonContainer <| centerFlex ++
+      [ height (vh 20) ]
+
+  , class ScrollButton <| centerFlex ++
+      [ backgroundColor white
+      , borderRadius (pct 50)
+      , height (px 50)
+      , width (px 50)
+      , children
+          [ svg [ fill primary ] ]
       ]
 
   , class About <| contentBase
@@ -255,34 +283,23 @@ css =
       [ width (Css.rem 12)
       , borderRadius (pct 50)
       , marginTop (Css.rem 2)
-      , Custom.boxShadow "0 12px 25px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)"
+      , Custom.boxShadow "0 12px 24px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)"
       ]
 
   , class TextContainer
-      [ margin2 (Css.rem 2) zero
+      [ margin4 (Css.rem 2) zero zero zero
       , children
           [ p
-              [ padding2 zero (pct 5)
-              , margin2 (Css.rem 0.5) zero
+              [ padding2 zero (pct 7)
+              , margin4 (Css.rem 0.5) zero zero zero
               , maxWidth (px 600)
-              , textAlign center
+              , textAlign left
+              , lineHeight (Css.rem 1.6)
               ]
           ]
       ]
 
-  , class Divider
-      [ height (px 5)
-      , width (pct 90)
-      , margin2 (pct 0) (pct 5)
-      , backgroundColor red
-      , borderRadius (px 1)
-      , boxShadow4 zero (px 3) (px 6) (rgba 0 0 0 0.2)
-      ]
-
-    , class Experience <| contentBase ++
-        [ children
-            [ class Divider [ marginTop (Css.rem 2.5) ] ]
-        ]
+    , class Experience <| contentBase
 
     , class ExpItem
         [ width (pct 90)
@@ -351,10 +368,7 @@ css =
             ]
         ]
 
-    , class Education <| contentBase ++
-        [ children
-            [ class Divider [ marginTop (Css.rem 2.5) ] ]
-        ]
+    , class Education <| contentBase
 
     , class MajorMinor
         [ margin2 (Css.rem 0.5) zero
