@@ -135,23 +135,25 @@ about =
         ]
     ]
 
-toggleDetailsButton : List DetailCard -> DetailCard -> Html Msg
-toggleDetailsButton expandedCards card =
+toggleDetailsButton : List DetailCard -> DetailCard -> String -> Html Msg
+toggleDetailsButton expandedCards card color =
   if not (isExpanded expandedCards card)
     then
       button
         [ class [ ToggleDetails ]
+        , style [ ("backgroundColor", color) ]
         , onClick <| ExpandCard card
         ]
-        [ text "See more details"
+        [ text "more"
         , navIcon "expand_more"
         ]
     else
       button
         [ class [ ToggleDetails ]
+        , style [ ("backgroundColor", color) ]
         , onClick <| CollapseCard card
         ]
-        [ text "Hide details"
+        [ text "less"
         , navIcon "expand_less"
         ]
 
@@ -174,15 +176,16 @@ experience expandedCards =
 
 expItem : List DetailCard -> ExpItemDetails -> Html Msg
 expItem expandedCards detailsItem =
-  div [ class [ ExpItem ] ]
+  div [ class [ ItemDetails ] ]
     [ div [ class [ DetailsLogo ] ] [ img [ src detailsItem.logo ] [] ]
-    , div [ class [ ExpDetails ], style [ ("backgroundColor", detailsItem.color) ] ]
-        [ p [] [ text detailsItem.position ]
+    , div [ class [ BasicDetails ] ]
+        [ p [ class [ DefaultFont ] ] [ text detailsItem.position ]
         , p [] [ text detailsItem.timePeriod ]
-        , toggleDetailsButton expandedCards detailsItem.card
-        , div [ class [ MoreDetails ], id detailsItem.card ]
-            (List.map detailBullet detailsItem.details)
         ]
+    , toggleDetailsButton expandedCards detailsItem.card detailsItem.color
+    , div [ class [ MoreDetails ], id detailsItem.card ]
+        [ div [ class [ DetailsText ] ] (List.map detailBullet detailsItem.details) ]
+    , div [ class [ DetailsBottom ], style [ ("backgroundColor", detailsItem.color) ] ] []
     ]
 
 education : List DetailCard -> Html Msg
@@ -195,24 +198,31 @@ education expandedCards =
 
 eduItem : List DetailCard -> EduItemDetails -> Html Msg
 eduItem expandedCards detailsItem =
-  div [ class [ ExpItem ] ]
+  div [ class [ ItemDetails ] ]
     [ div [ class [ DetailsLogo ] ] [ img [ src detailsItem.logo ] [] ]
-    , div [ class [ ExpDetails ], style [ ("backgroundColor", detailsItem.color) ] ]
-        [ p [] [ text detailsItem.degree ]
+    , div [ class [ BasicDetails ] ]
+        [ p [ class [ DefaultFont ] ] [ text detailsItem.degree ]
         , p [] [ text detailsItem.timePeriod ]
-        , toggleDetailsButton expandedCards detailsItem.card
-        , div [ class [ MoreDetails ], id detailsItem.card ]
-            [ div [ class [ MajorMinor ] ]
-                [ p [] [ text "Major:" ]
-                , p [] [ text detailsItem.major ] ]
-            , div [ class [ MajorMinor ] ]
-                [ p [] [ text "Minor:" ]
-                , p [] [ text detailsItem.minor ]
-                ]
-            , div []
-                [ text "Relevant Coursework:"
-                , div [] (List.map detailBullet detailsItem.coursework)
-                ]
+        ]
+    , toggleDetailsButton expandedCards detailsItem.card detailsItem.color
+    , eduDetails detailsItem
+    , div [ class [ DetailsBottom ], style [ ("backgroundColor", detailsItem.color) ] ] []
+    ]
+
+eduDetails : EduItemDetails -> Html Msg
+eduDetails detailsItem =
+  div [ class [ MoreDetails ], id detailsItem.card ]
+    [ div [ class [ DetailsText ] ]
+        [ div [ class [ MajorMinor ] ]
+            [ p [ class [ DefaultFont ] ] [ text "Major:" ]
+            , p [] [ text detailsItem.major ] ]
+        , div [ class [ MajorMinor ] ]
+            [ p [ class [ DefaultFont ] ] [ text "Minor:" ]
+            , p [] [ text detailsItem.minor ]
+            ]
+        , div [ class [ CourseWork ] ]
+            [ p [ class [ DefaultFont ] ] [ text "Relevant Coursework:" ]
+            , div [] (List.map detailBullet detailsItem.coursework)
             ]
         ]
     ]

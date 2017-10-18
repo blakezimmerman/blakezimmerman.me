@@ -11,6 +11,7 @@ import SharedStyles.CustomCss as Custom exposing (..)
 
 type CssClasses
   = Code
+  | DefaultFont
   | NavIcon
   | Main
   | HeaderInit
@@ -35,14 +36,17 @@ type CssClasses
   | MyPicture
   | TextContainer
   | Experience
-  | ExpItem
+  | ItemDetails
   | DetailsLogo
-  | ExpDetails
+  | BasicDetails
   | ToggleDetails
+  | DetailsBottom
   | MoreDetails
+  | DetailsText
   | DetailBullet
   | Education
   | MajorMinor
+  | CourseWork
   | Contact
   | ContactIcon
   | End
@@ -149,6 +153,11 @@ css =
       [ fontFamilies [ "Fira Code" ]
       , fontVariantLigatures contextual
       , fontFeatureSettings (featureTag "calt")
+      ]
+
+  , class DefaultFont
+      [ fontWeight (int 300)
+      , fontSize (Css.rem 1.2)
       ]
 
   , class NavIcon
@@ -304,16 +313,17 @@ css =
 
     , class Experience <| contentBase
 
-    , class ExpItem
+    , class ItemDetails
         [ width (pct 90)
         , maxWidth (px 800)
         , marginTop (vh 4)
         , borderRadius (px 1)
-        , border3 (px 1) solid (rgb 230 230 230)
+        , boxShadow4 zero zero (px 4) (rgba 0 0 0 0.2)
         ]
 
     , class DetailsLogo
         [ height (Css.rem 5)
+        , margin2 (Css.rem 1) zero
         , displayFlex
         , justifyContent center
         , children
@@ -321,50 +331,59 @@ css =
             ]
         ]
 
-    , class ExpDetails
-        [ color white
-        , fontSize (Css.rem 1)
+    , class BasicDetails
+        [ fontSize (Css.rem 1)
         , displayFlex
         , flexDirection column
         , justifyContent center
         , alignItems center
-        , padding2 (Css.rem 0.5) zero
+        , padding3 zero zero (Css.rem 1.2)
         , children
-            [ p [ margin zero ] ]
+            [ p [ margin2 (Css.rem 0.2) zero ] ]
         ]
 
     , class ToggleDetails
-        [ backgroundColor clear
-        , outline zero
+        [ outline zero
         , border zero
         , cursor pointer
+        , width (pct 100)
         , color white
         , fontWeight (int 300)
-        , paddingTop (Css.rem 0.7)
         , fontSize (Css.rem 0.9)
         , fontStyle italic
         , displayFlex
         , flexDirection column
         , alignItems center
+        , zIndex (int 1)
         , children
             [ svg
                 [ width (px 20)
                 , height (px 20)
-                , marginBottom (px -5)
+                , margin4 (px -5) zero (px -3) zero
                 ]
             ]
         ]
 
+    , class DetailsBottom
+        [ width (pct 100)
+        , height (Css.rem 0.5)
+        , marginTop (Css.rem -0.5)
+        ]
+
     , class MoreDetails
         [ height zero
-        , width (pct 94)
         , overflow hidden
         , transition "height 0.4s ease-in-out"
         ]
 
+    , class DetailsText
+        [ padding3 (Css.rem 0.5) (pct 3) (Css.rem 1)
+        , fontSize (Css.rem 1.1)
+        ]
+
     , class DetailBullet
         [ displayFlex
-        , margin2 (Css.rem 0.5) zero
+        , margin2 (Css.rem 0.8) zero
         , children
             [ class Code
                 [ margin4 zero (Css.rem 0.4) zero zero ]
@@ -381,6 +400,12 @@ css =
                 , firstChild [ margin4 zero (Css.rem 1) zero zero ]
                 ]
             ]
+        ]
+
+    , class CourseWork
+        [ marginTop (Css.rem 1.2)
+        , children
+            [ p [ margin zero ] ]
         ]
 
     , class Contact <| contentBase ++
