@@ -384,7 +384,8 @@ css =
         ]
 
     , class Contact <| contentBase ++
-        [ height (pct 90)
+        [ height (pct 94)
+        , marginBottom zero
         , children
             [ a
                 [ textDecoration none
