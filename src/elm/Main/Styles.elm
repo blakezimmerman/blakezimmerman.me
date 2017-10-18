@@ -43,6 +43,9 @@ type CssClasses
   | DetailBullet
   | Education
   | MajorMinor
+  | Contact
+  | ContactIcon
+  | End
 
 
 -- CLASS BASES
@@ -379,4 +382,30 @@ css =
                 ]
             ]
         ]
+
+    , class Contact <| contentBase ++
+        [ height (pct 90)
+        , children
+            [ a
+                [ textDecoration none
+                , color blue
+                , margin4 (Css.rem 2) zero zero zero
+                ]
+            , p
+                [ margin2 (Css.rem 0.1) zero
+                ]
+            ]
+        ]
+
+  , class ContactIcon
+      [ width (px 60)
+      , height (px 60)
+      , margin2 (Css.rem 1.5) (Css.rem 0.5)
+      ]
+
+  , class End
+      [ borderTop3 (px 1) solid darkGray
+      , marginTop (Css.rem 1)
+      , width (Css.rem 5)
+      ]
   ]

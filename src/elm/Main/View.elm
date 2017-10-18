@@ -27,6 +27,7 @@ view model =
         , about
         , experience model.expandedCards
         , education model.expandedCards
+        , contact
         ]
     ]
 
@@ -214,4 +215,28 @@ eduItem expandedCards detailsItem =
                 ]
             ]
         ]
+    ]
+
+contactIcon : String -> String -> Html Msg
+contactIcon link name =
+  a [ href link ]
+    [ img
+        [ class [ContactIcon]
+        , src <| "assets/" ++ name ++ ".svg"
+        ] []
+    ]
+
+contact : Html Msg
+contact =
+  div [ class [ Contact ] ]
+    [ h2 [] [ text "Contact" ]
+    , a
+        [ href "mailto:blake.zimmerman@me.com" ]
+        [ text "blake.zimmerman@me.com" ]
+    , p [] [ text "215-275-9279" ]
+    , div []
+        [ contactIcon "https://www.linkedin.com/in/blake-zimmerman-5b9961149/" "linkedin"
+        , contactIcon "https://github.com/blakezimmerman" "github"
+        ]
+    , div [ class [ End ] ] []
     ]
