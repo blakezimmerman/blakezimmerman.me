@@ -98,7 +98,7 @@ home curHeight =
         , p [] [ text "Student and Software Developer" ]
         ]
     , div [ class [ ResumeContainer ] ]
-        [ a [ class [ Resume ], href "/assets/BlakeZimmermanResume.pdf" ]
+        [ a [ class [ Resume ], href "/assets/BlakeZimmermanResume.pdf", target "_blank" ]
             [ text "View My Resume" ]
         ]
     , div [ class [ ScrollButtonContainer ] ]
@@ -229,7 +229,7 @@ eduDetails detailsItem =
 
 contactIcon : String -> String -> Html Msg
 contactIcon link name =
-  a [ href link ]
+  a [ href link, target "_blank" ]
     [ img
         [ class [ContactIcon]
         , src <| "assets/" ++ name ++ ".svg"
