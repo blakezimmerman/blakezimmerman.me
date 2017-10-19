@@ -123,10 +123,10 @@ stevensEduDetails =
 -- CONTACT
 
 email : String
-email = "blake.zimmerman@me.com"
+email = "blake"++".zimm"++"erman"++"@"++"me."++"com"
 
 phone : String
-phone = "215-275-9279"
+phone = "21"++"5-"++"2"++"75-9"++"279"
 
 linkedin : String
 linkedin = "https://www.linkedin.com/in/blake-zimmerman-5b9961149/"
