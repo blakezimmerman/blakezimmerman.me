@@ -20,7 +20,7 @@ red : Color
 red = (hex "E62828")
 
 blue : Color
-blue = (hex "447ED6")
+blue = (hex "049EFF")
 
 clear : Color
 clear = (rgba 0 0 0 0)
