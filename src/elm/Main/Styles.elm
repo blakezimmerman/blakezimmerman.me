@@ -283,8 +283,8 @@ css =
   , class ScrollButton <| centerFlex ++
       [ backgroundColor white
       , borderRadius (pct 50)
-      , height (px 50)
-      , width (px 50)
+      , height (px 55)
+      , width (px 55)
       , children
           [ svg [ fill primary ] ]
       ]
@@ -379,6 +379,7 @@ css =
     , class DetailsText
         [ padding3 (Css.rem 0.5) (pct 3) (Css.rem 1)
         , fontSize (Css.rem 1.1)
+        , lineHeight (Css.rem 1.5)
         ]
 
     , class DetailBullet

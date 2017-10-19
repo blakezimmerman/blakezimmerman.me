@@ -116,23 +116,7 @@ about =
     [ h2 [] [ text "About Me" ]
     , img [ class [ MyPicture ], src "/assets/blake.jpg" ] []
     , div [ class [ TextContainer ] ]
-        [ p []
-            [ text
-                """
-                Hi, I'm Blake! I am currently a student at Stevens Institute
-                of Technology pursuing a B.E. in Software Engineering and a minor
-                in Computer Science.
-                """
-            ]
-        , p []
-            [ text
-                """
-                I am most interested in frontend development and functional programming.
-                I always enjoy reading about emerging technologies in these fields and
-                researching how I can leverage them to create better software experiences.
-                """
-            ]
-        ]
+        (List.map (\x -> p [] [ text x ]) aboutMe)
     ]
 
 toggleDetailsButton : List DetailCard -> DetailCard -> String -> Html Msg
@@ -231,7 +215,7 @@ contactIcon : String -> String -> Html Msg
 contactIcon link name =
   a [ href link, target "_blank" ]
     [ img
-        [ class [ContactIcon]
+        [ class [ ContactIcon ]
         , src <| "assets/" ++ name ++ ".svg"
         ] []
     ]
@@ -241,12 +225,12 @@ contact =
   div [ class [ Contact ] ]
     [ h2 [] [ text "Contact" ]
     , a
-        [ href "mailto:blake.zimmerman@me.com" ]
-        [ text "blake.zimmerman@me.com" ]
-    , p [] [ text "215-275-9279" ]
+        [ href <| "mailto:" ++ email ]
+        [ text email ]
+    , p [] [ text phone ]
     , div []
-        [ contactIcon "https://www.linkedin.com/in/blake-zimmerman-5b9961149/" "linkedin"
-        , contactIcon "https://github.com/blakezimmerman" "github"
+        [ contactIcon linkedin "linkedin"
+        , contactIcon github "github"
         ]
     , div [ class [ End ] ] []
     ]

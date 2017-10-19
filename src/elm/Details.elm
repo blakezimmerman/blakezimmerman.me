@@ -7,6 +7,22 @@ type DetailCard
   | StevensEduCard
 
 
+-- ABOUT ME
+
+aboutMe : List String
+aboutMe =
+  [ """
+    Hi, I'm Blake! I am currently a student at Stevens Institute
+    of Technology pursuing a B.E. in Software Engineering and a minor
+    in Computer Science.
+    """
+  , """
+    I am most interested in frontend development and functional programming.
+    I always enjoy reading about emerging technologies in these fields and
+    researching how I can leverage them to create better software experiences.
+    """
+  ]
+
 -- EXPERIENCE
 
 type alias ExpItemDetails =
@@ -102,3 +118,18 @@ stevensEduDetails =
       , "Engineering Design I-V"
       ]
   }
+
+
+-- CONTACT
+
+email : String
+email = "blake.zimmerman@me.com"
+
+phone : String
+phone = "215-275-9279"
+
+linkedin : String
+linkedin = "https://www.linkedin.com/in/blake-zimmerman-5b9961149/"
+
+github : String
+github = "https://github.com/blakezimmerman"
