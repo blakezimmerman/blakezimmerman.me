@@ -17,7 +17,7 @@ aboutMe =
     in Computer Science.
     """
   , """
-    I am most interested in frontend development and functional programming.
+    I am most interested in front-end development and functional programming.
     I always enjoy reading about emerging technologies in these fields and
     researching how I can leverage them to create better software experiences.
     """
@@ -42,7 +42,7 @@ jetDetails =
   , position = "Software Engineering Intern"
   , timePeriod = "January 2017 - Present"
   , details =
-      [ "Developed an Angular 4 frontend from the ground up for a new internal tool that shows divergence between Event Store clusters"
+      [ "Developed an Angular 4 front-end from the ground up for a new internal tool that shows divergence between Event Store clusters"
       , "Implemented real-time notifications in the SKU management web application using SignalR and RxJS Observables"
       , "Rewrote the authentication system for the SKU management web application using Node and PassportJS"
       , "Built micro-scale version of the Jet website to demonstrate system architecture for new hires (frontend in Angular 2, backend in Web API 2.2 using F#)"
