@@ -43,10 +43,10 @@ jetDetails =
   , timePeriod = "January 2017 - Present"
   , details =
       [ "Developed an Angular 4 front-end from the ground up for a new internal tool that shows divergence between Event Store clusters"
-      , "Implemented real-time notifications in the SKU management web application using SignalR and RxJS Observables"
-      , "Rewrote the authentication system for the SKU management web application using Node and PassportJS"
-      , "Built micro-scale version of the Jet website to demonstrate system architecture for new hires (frontend in Angular 2, backend in Web API 2.2 using F#)"
-      , "Developed and deployed production level features to customer service and order management web applications"
+      , "Implemented real-time notifications in the catalog management web application using SignalR, RxJS Observables, and F# microservices"
+      , "Rewrote the authentication system for the catalog management web application using Node.js and Passport.js"
+      , "Built a micro-scale version of the Jet.com website to demonstrate system architecture for new hires (front-end in Angular 2, back-end in Web API 2.2 using F#)"
+      , "Developed and deployed production level features to customer service, order management, and catalog management web applications"
       ]
   }
 
