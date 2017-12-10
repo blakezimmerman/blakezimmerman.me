@@ -21,6 +21,8 @@ type CssClasses
   | NoLogo
   | LogoButton
   | MenuIcon
+  | MenuOverlay
+  | MenuOverlayHidden
   | Menu
   | MenuClose
   | CloseButton
@@ -205,6 +207,17 @@ css =
               , margin2 (px 6) zero
               ]
           ]
+      ]
+
+  , class MenuOverlay
+      [ width (pct 100)
+      , height (vh 100)
+      , position fixed
+      , zIndex (int 2)
+      ]
+
+  , class MenuOverlayHidden
+      [ display none
       ]
 
   , class Menu <| menuBase ++
