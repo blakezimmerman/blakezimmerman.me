@@ -40,7 +40,7 @@ jetDetails =
   , color = "rgb(130, 0, 255)"
   , logo = "/assets/jetlogo.jpg"
   , position = "Software Engineering Intern"
-  , timePeriod = "January 2017 - Present"
+  , timePeriod = "January 2017 - December 2017"
   , details =
       [ "Developed an Angular 4 front-end from the ground up for a new internal tool that shows divergence between Event Store clusters"
       , "Implemented real-time notifications in the catalog management web application using SignalR, RxJS Observables, and F# microservices"

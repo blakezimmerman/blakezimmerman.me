@@ -76,12 +76,12 @@ homeButton model =
     , onClick <| SmoothScroll (".mainHome", 0)
     , disabled <| model.scrollPercent < 15
     ]
-    [ h1
+    [ img
         [ class <| if model.scrollPercent > 15
-            then [ Code, Logo ]
-            else [ Code, NoLogo]
-        ]
-        [ text "[BZ]" ]
+            then [ Logo ]
+            else [ NoLogo]
+        , src "assets/logo.svg"
+        ] []
     ]
 
 header : Model -> Html Msg
@@ -97,10 +97,10 @@ header model =
 home : Float -> Html Msg
 home curHeight =
   div [ class [ Home ] ]
-    [ h1 [ class [ Code ] ] [ text "[BZ]" ]
+    [ img [ class [ HeaderLogo ], src "assets/logo.svg" ] []
     , div [ class [ NameContainer ] ]
-        [ h2 [] [ text "Blake Zimmerman" ]
-        , p [ class [ Code ] ] [ text "BZ :: Coffee -> Code" ]
+        [ h1 [] [ text "Blake Zimmerman" ]
+        , img [ class [ Signature ], src "/assets/signature.svg" ] []
         , p [] [ text "Student and Software Developer" ]
         ]
     , div [ class [ ResumeContainer ] ]
@@ -150,8 +150,8 @@ toggleDetailsButton expandedCards card color =
 detailBullet : String -> Html Msg
 detailBullet detailText =
   div [ class [ DetailBullet ] ]
-    [ div [ class [ Code ] ] [ text "|>" ]
-    , div [] [ text detailText ]
+    [ div [ class [ Bullet ] ] [ text "○" ]
+    , li [] [ text detailText ]
     ]
 
 experience : List DetailCard -> Html Msg
@@ -174,7 +174,7 @@ expItem expandedCards detailsItem =
         ]
     , toggleDetailsButton expandedCards detailsItem.card detailsItem.color
     , div [ class [ MoreDetails ], id detailsItem.card ]
-        [ div [ class [ DetailsText ] ] (List.map detailBullet detailsItem.details) ]
+        [ ul [ class [ DetailsText ] ] (List.map detailBullet detailsItem.details) ]
     , div [ class [ DetailsBottom ], style [ ("backgroundColor", detailsItem.color) ] ] []
     ]
 

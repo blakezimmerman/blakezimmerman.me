@@ -10,8 +10,7 @@ import SharedStyles.CustomCss as Custom exposing (..)
 -- CLASSES
 
 type CssClasses
-  = Code
-  | DefaultFont
+  = DefaultFont
   | NavIcon
   | Main
   | HeaderInit
@@ -29,7 +28,9 @@ type CssClasses
   | MenuItem
   | Body
   | Home
+  | HeaderLogo
   | NameContainer
+  | Signature
   | ResumeContainer
   | Resume
   | ScrollButtonContainer
@@ -46,6 +47,7 @@ type CssClasses
   | MoreDetails
   | DetailsText
   | DetailBullet
+  | Bullet
   | Education
   | MajorMinor
   | CourseWork
@@ -73,16 +75,9 @@ headerBase =
 
 logoBase : List Style
 logoBase =
-  [ fontSize (Css.rem 1.5)
-  , displayFlex
-  , alignItems center
-  , position fixed
-  , top zero
-  , left zero
-  , height (pct 6)
-  , margin2 (vh 1) (pct 4)
+  [ displayFlex
+  , height (px 25)
   , transition "0.6s"
-  , color white
   ]
 
 menuBase : List Style
@@ -151,12 +146,6 @@ css =
       , fontSize (Css.rem 1.2)
       ]
 
-  , class Code
-      [ fontFamilies [ "Fira Code" ]
-      , fontVariantLigatures contextual
-      , fontFeatureSettings (featureTag "calt")
-      ]
-
   , class DefaultFont
       [ fontWeight (int 300)
       , fontSize (Css.rem 1.2)
@@ -180,6 +169,7 @@ css =
 
   , class Header <| headerBase ++
       [ height (pct 6)
+      , minHeight (px 40)
       , Custom.boxShadow "0 8px 16px rgba(0,0,0,0.19), 0 5px 5px rgba(0,0,0,0.23)"
       , fontSize (Css.rem 1)
       ]
@@ -189,9 +179,11 @@ css =
       , top zero
       , left zero
       , height (pct 6)
+      , minHeight (px 40)
       , margin2 (vh 1) (pct 4)
+      , padding zero
       , children
-          [ class Logo <| logoBase
+          [ class Logo <| logoBase ++ [ cursor pointer ]
           , class NoLogo <| logoBase ++ [ opacity zero ]
           ]
       ]
@@ -253,25 +245,29 @@ css =
       , alignItems center
       , color white
       , backgroundColor primary
-      , children
-          [ h1 <| centerFlex ++
-              [ height (vh 25)
-              , margin4 (vh 10) zero zero zero
-              , fontSize (Css.rem 4)
-              ]
-          ]
+      ]
+
+  , class HeaderLogo
+      [ width (Css.rem 8)
+      , height (vh 25)
+      , margin4 (vh 10) zero zero zero
       ]
 
   , class NameContainer <| centerFlex ++
       [ flexDirection column
       , height (vh 20)
       , children
-          [ h2 <| centerFlex ++
+          [ h1 <| centerFlex ++
               [ margin2 (Css.rem 0.25) zero
               , fontSize (Css.rem 2.2)
               , fontWeight (int 300)
               ]
-            , p <| centerFlex ++
+          , class Signature
+              [ height (Css.rem 0.9)
+              , padding2 (Css.rem 0.3) zero
+              , margin2 (Css.rem 0.25) zero
+              ]
+          , p <| centerFlex ++
               [ margin2 (Css.rem 0.25) zero ]
           ]
       ]
@@ -394,14 +390,15 @@ css =
         [ padding3 (Css.rem 0.5) (pct 3) (Css.rem 1)
         , fontSize (Css.rem 1.1)
         , lineHeight (Css.rem 1.5)
+        , margin zero
+        , listStyleType none
         ]
 
     , class DetailBullet
         [ displayFlex
         , margin2 (Css.rem 0.8) zero
         , children
-            [ class Code
-                [ margin4 zero (Css.rem 0.4) zero zero ]
+            [ class Bullet [ margin4 zero (Css.rem 0.5) zero zero ]
             ]
         ]
 
