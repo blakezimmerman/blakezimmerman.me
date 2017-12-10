@@ -214,6 +214,7 @@ css =
       , height (vh 100)
       , position fixed
       , zIndex (int 2)
+      , tapHighlightColor "rgba(0, 0, 0, 0)"
       ]
 
   , class MenuOverlayHidden
