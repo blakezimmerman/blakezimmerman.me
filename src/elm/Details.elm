@@ -42,7 +42,8 @@ jetDetails =
   , position = "Software Engineering Intern"
   , timePeriod = "January 2017 - December 2017"
   , details =
-      [ "Developed an Angular 4 front-end from the ground up for a new internal tool that shows divergence between Event Store clusters"
+      [ "Built a visualization tool for Jet’s internal telemetry logging system using Typescript, React, and D3"
+      , "Developed an Angular 4 front-end from the ground up for a new internal tool that shows divergence between Event Store clusters"
       , "Implemented real-time notifications in the catalog management web application using SignalR, RxJS Observables, and F# microservices"
       , "Rewrote the authentication system for the catalog management web application using Node.js and Passport.js"
       , "Built a micro-scale version of the Jet.com website to demonstrate system architecture for new hires (front-end in Angular 2, back-end in Web API 2.2 using F#)"
