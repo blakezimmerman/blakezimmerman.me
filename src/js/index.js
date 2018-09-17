@@ -1,20 +1,20 @@
-const styles = require('../elm/Stylesheets.elm');
-const navIcons = require('../assets/navIcons.svg');
-const resume = require('../assets/BlakeZimmermanResume.pdf');
-const logo = require('../assets/logo.svg');
-const signature = require('../assets/signature.svg');
-const myPicture = require('../assets/blake.jpg');
-const jetLogo = require('../assets/jetlogo.jpg');
-const baeLogo = require('../assets/baelogo.jpg');
-const stevensLogo = require('../assets/stevenslogo.jpg');
-const linkedinLogo = require('../assets/linkedin.svg');
-const githubLogo = require('../assets/github.svg');
-const smoothScroll = require('./smoothScroll');
-const Elm = require('../elm/Entry.elm');
+const navIcons = require("../assets/navIcons.svg");
+const resume = require("../assets/BlakeZimmermanResume.pdf");
+const logo = require("../assets/logo.svg");
+const signature = require("../assets/signature.svg");
+const myPicture = require("../assets/blake.jpg");
+const jetLogo = require("../assets/jetlogo.jpg");
+const baeLogo = require("../assets/baelogo.jpg");
+const stevensLogo = require("../assets/stevenslogo.jpg");
+const linkedinLogo = require("../assets/linkedin.svg");
+const githubLogo = require("../assets/github.svg");
 
-const app = Elm.Main.embed(document.getElementById('main'));
+const { Elm } = require("../elm/Main.elm");
+const smoothScroll = require("./smoothScroll");
 
-window.addEventListener('scroll', function() {
+const app = Elm.Main.init({ node: document.getElementById("main") });
+
+window.addEventListener("scroll", function() {
   app.ports.scrollDetails.send([window.pageYOffset, window.innerHeight]);
 });
 
@@ -28,7 +28,5 @@ app.ports.smoothScroll.subscribe(function([target, offset]) {
 app.ports.resizeHeight.subscribe(function(id) {
   const elem = document.getElementById(id);
 
-  elem.style.height = elem.clientHeight
-    ? 0
-    : elem.scrollHeight + 'px';
+  elem.style.height = elem.clientHeight ? 0 : elem.scrollHeight + "px";
 });

@@ -1,47 +1,39 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require("path");
 
-const ROOT = path.resolve(__dirname, '../src');
+const ROOT = path.resolve(__dirname, "../src");
 
 module.exports = {
-  entry: path.resolve(ROOT, './js/index.js'),
+  entry: path.resolve(ROOT, "./js/index.js"),
 
   resolve: {
-    extensions: ['.js', '.elm'],
+    extensions: [".js", ".elm"],
   },
 
   module: {
-    loaders : [
+    rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
-            presets: ['env']
-          }
-        }
-      },
-      {
-        test: /Stylesheets\.elm$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'elm-css-webpack-loader'
-        ]
+            presets: ["@babel/env"],
+          },
+        },
       },
       {
         test: /\.(pdf|png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
-        use: 'file-loader?name=assets/[name].[ext]'
-      }
-    ]
+        use: "file-loader?name=assets/[name].[ext]",
+      },
+    ],
   },
 
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'index.html'
-    })
+      template: "index.html",
+    }),
   ],
 
-  target: 'web'
+  target: "web",
 };
