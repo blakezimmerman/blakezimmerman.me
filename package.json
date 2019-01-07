@@ -7,7 +7,8 @@
     "start": "webpack-dev-server --config webpack/webpack.dev.js --env=dev --hot --inline --progress --port 8080",
     "start:debug": "webpack-dev-server --config webpack/webpack.dev.js --env=debug --hot --inline --progress --port 8080",
     "build": "rimraf dist && webpack --config webpack/webpack.prod.js --bail",
-    "prettier": "prettier --write \"src/**/*.{js,elm}*\""
+    "prettier": "prettier --write \"src/**/*.{js,elm}*\"",
+    "publish": "firebase deploy"
   },
   "author": "Blake Zimmerman",
   "license": "ISC",

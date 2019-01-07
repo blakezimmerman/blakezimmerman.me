@@ -50,6 +50,21 @@ aboutMe =
 
 -- EXPERIENCE
 
+storeno8Details : ItemDetails ExpDetails
+storeno8Details =
+    { id = "storeno8Card"
+    , color = rgb 0 0 255
+    , logo = "/assets/storeno8logo.jpg"
+    , title = "Software Engineer"
+    , timePeriod = "March 2018 - Present"
+    , details =
+        [ "Implemented, tested, and maintained microservices and web applications to drive innovative in-store experiences for Walmart"
+        , "Developed a service to convert real-time RTSP video to HLS and serve it with only a 3 second delay"
+        , "Pioneered a UI component library to facilitate sharing between the company’s front-end developers"
+        , "Designed an internal React library for managing shared state in multi-window web applications"
+        ]
+    }
+
 
 jetDetails : ItemDetails ExpDetails
 jetDetails =
