@@ -3,7 +3,7 @@ module Components.Menu exposing (..)
 import Components.NavIcon exposing (..)
 import Css exposing (..)
 import Html.Styled exposing (..)
-import Html.Styled.Attributes exposing (css)
+import Html.Styled.Attributes exposing (attribute, css)
 import Html.Styled.Events exposing (onClick)
 import Logic exposing (..)
 import Styling exposing (..)
@@ -38,6 +38,7 @@ menuOverlay showMenu =
             , zIndex (int 2)
             , tapHighlightColor "rgba(0, 0, 0, 0)"
             ]
+
         else
             [ display none
             ]
@@ -70,12 +71,14 @@ menu model =
             [ css <|
                 if model.showMenu then
                     [ transform <| translateX (pct 0) ]
+
                 else
                     [ transform <| translateX (pct 105) ]
             ]
           <|
             clearButton
                 [ css [ textAlign left ]
+                , attribute "aria-label" "Close Menu"
                 , onClick ToggleMenu
                 ]
                 [ navIcon theme.white "close" ]

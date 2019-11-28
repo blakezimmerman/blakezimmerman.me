@@ -23,6 +23,7 @@ type alias ItemDetails details =
     { id : CardId
     , color : Color
     , logo : String
+    , logoAlt : String
     , title : String
     , timePeriod : String
     , details : details
@@ -56,6 +57,7 @@ storeno8Details =
     { id = "storeno8Card"
     , color = rgb 0 0 255
     , logo = "/assets/storeno8logo.jpg"
+    , logoAlt = "Store No. 8 Logo"
     , title = "Software Engineer"
     , timePeriod = "March 2018 - Present"
     , details =
@@ -72,6 +74,7 @@ jetDetails =
     { id = "jetCard"
     , color = rgb 130 0 255
     , logo = "/assets/jetlogo.jpg"
+    , logoAlt = "Jet.com Logo"
     , title = "Software Engineering Intern"
     , timePeriod = "January 2017 - December 2017"
     , details =
@@ -90,6 +93,7 @@ baeDetails =
     { id = "baeCard"
     , color = rgb 237 28 59
     , logo = "/assets/baelogo.jpg"
+    , logoAlt = "BAE Logo"
     , title = "Technical Intern II"
     , timePeriod = "January 2016 - August 2016"
     , details =
@@ -106,6 +110,7 @@ stevensDetails =
     { id = "stevensCard"
     , color = rgb 179 5 56
     , logo = "/assets/stevenslogo.jpg"
+    , logoAlt = "Stevens Institute of Technology Logo"
     , title = "Learning Technology Assistant"
     , timePeriod = "January 2015 - December 2016"
     , details =
@@ -127,6 +132,7 @@ stevensEduDetails =
     { id = "stevensEduCard"
     , color = rgb 179 5 56
     , logo = "/assets/stevenslogo.jpg"
+    , logoAlt = "Stevens Institute of Technology Logo"
     , title = "Bachelors of Engineering"
     , timePeriod = "August 2014 - May 2019"
     , details =

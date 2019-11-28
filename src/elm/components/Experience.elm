@@ -11,7 +11,7 @@ import Styling exposing (..)
 
 expDetails : ExpDetails -> Html Msg
 expDetails details =
-    moreDetailsText [] (List.map detailBullet details)
+    moreDetailsList [] (List.map detailBullet details)
 
 
 experience : List CardId -> Html Msg

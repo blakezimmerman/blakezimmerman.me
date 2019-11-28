@@ -2,7 +2,7 @@ module Components.Header exposing (..)
 
 import Css exposing (..)
 import Html.Styled exposing (..)
-import Html.Styled.Attributes exposing (css, src)
+import Html.Styled.Attributes exposing (alt, attribute, css, src)
 import Html.Styled.Events exposing (onClick)
 import Logic exposing (..)
 import Styling exposing (..)
@@ -67,6 +67,7 @@ menuButton =
             [ margin zero
             , padding zero
             ]
+        , attribute "aria-label" "Menu Button"
         , onClick ToggleMenu
         ]
         [ line [] [], line [] [], line [] [] ]
@@ -93,6 +94,7 @@ homeButton model =
             , margin2 (vh 1) (pct 4)
             , padding zero
             ]
+        , attribute "aria-label" "Home button"
         , onClick <| SmoothScroll ( "#Home", 0 )
         , Html.Styled.Attributes.disabled <| model.scrollPercent < 15
         ]
@@ -103,6 +105,7 @@ homeButton model =
 
                 else
                     [ opacity zero ]
+            , alt "logo"
             , src "assets/logo.svg"
             ]
             []

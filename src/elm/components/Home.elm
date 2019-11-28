@@ -3,7 +3,7 @@ module Components.Home exposing (..)
 import Components.NavIcon exposing (..)
 import Css exposing (..)
 import Html.Styled exposing (..)
-import Html.Styled.Attributes exposing (css, href, id, src)
+import Html.Styled.Attributes exposing (alt, attribute, css, href, id, src)
 import Html.Styled.Events exposing (onClick)
 import Logic exposing (..)
 import Styling exposing (..)
@@ -28,7 +28,9 @@ logo =
         , height (vh 25)
         , margin4 (vh 10) zero zero zero
         ]
-        [ src "assets/logo.svg" ]
+        [ src "assets/logo.svg"
+        , alt "logo"
+        ]
         []
 
 
@@ -51,13 +53,17 @@ name =
                ]
 
 
-signature : StyledElement msg
+signature : Html Msg
 signature =
     styled img
         [ height (rem 0.9)
         , padding2 (rem 0.3) zero
         , margin2 (rem 0.25) zero
         ]
+        [ src "/assets/signature.svg"
+        , alt "BZ :: Coffee -> Code"
+        ]
+        []
 
 
 title : StyledElement msg
@@ -115,7 +121,7 @@ home curHeight =
         [ logo
         , nameWraper []
             [ name [] [ text "Blake Zimmerman" ]
-            , signature [ src "/assets/signature.svg" ] []
+            , signature
             , title [] [ text "Software Developer" ]
             ]
         , resumeWrapper []
@@ -127,7 +133,8 @@ home curHeight =
             ]
         , scrollButtonWrapper []
             [ scrollButton
-                [ onClick <| SelectItem ( "#About", curHeight * -0.06 )
+                [ attribute "aria-label" "Scroll to next section"
+                , onClick <| SelectItem ( "#About", curHeight * -0.06 )
                 ]
                 [ navIcon theme.primaryColor "expand_more" ]
             ]

@@ -4,7 +4,7 @@ import Components.NavIcon exposing (..)
 import Css exposing (..)
 import Details exposing (..)
 import Html.Styled exposing (..)
-import Html.Styled.Attributes exposing (css, id, src)
+import Html.Styled.Attributes exposing (alt, css, id, src)
 import Html.Styled.Events exposing (onClick)
 import Logic exposing (..)
 import Styling exposing (..)
@@ -100,20 +100,28 @@ moreDetailsWrapper =
         ]
 
 
-moreDetailsText : StyledElement msg
-moreDetailsText =
-    styled ul
-        [ padding3 (rem 0.5) (pct 3) (rem 1)
-        , fontSize (rem 1.1)
-        , lineHeight (rem 1.5)
-        , margin zero
-        , listStyleType none
-        ]
+moreDetailsBaseStyles =
+    [ padding3 (rem 0.5) (pct 3) (rem 1)
+    , fontSize (rem 1.1)
+    , lineHeight (rem 1.5)
+    , margin zero
+    , listStyleType none
+    ]
+
+
+moreDetailsList : StyledElement msg
+moreDetailsList =
+    styled ul moreDetailsBaseStyles
+
+
+moreDetailsListWrapper : StyledElement msg
+moreDetailsListWrapper =
+    styled div moreDetailsBaseStyles
 
 
 bulletWrapper : StyledElement msg
 bulletWrapper =
-    styled div
+    styled li
         [ displayFlex
         , margin2 (rem 0.8) zero
         ]
@@ -128,7 +136,7 @@ detailBullet : String -> Html Msg
 detailBullet detailText =
     bulletWrapper []
         [ bullet [] [ text "○" ]
-        , li [] [ text detailText ]
+        , div [] [ text detailText ]
         ]
 
 
@@ -145,7 +153,7 @@ detailsBottom color =
 card : List CardId -> ( ItemDetails a, Html Msg ) -> Html Msg
 card expandedCards ( itemDetails, moreDetails ) =
     cardWrapper []
-        [ logoWrapper [] [ logo [ src itemDetails.logo ] [] ]
+        [ logoWrapper [] [ logo [ src itemDetails.logo, alt itemDetails.logoAlt ] [] ]
         , basicDetails []
             [ basicDetailText [ css defaultFont ] [ text itemDetails.title ]
             , basicDetailText [] [ text itemDetails.timePeriod ]

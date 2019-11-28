@@ -22,14 +22,19 @@ majorMinorText =
         ]
 
 
-detailList : StyledElement msg
-detailList =
+detailsWrapper : StyledElement msg
+detailsWrapper =
     styled div [ marginTop (Css.rem 1.2) ]
+
+
+detailsList : StyledElement msg
+detailsList =
+    styled ul [ paddingLeft (rem 1) ]
 
 
 eduDetails : EduDetails -> Html Msg
 eduDetails details =
-    moreDetailsText []
+    moreDetailsListWrapper []
         [ majorMinor []
             [ majorMinorText [ css defaultFont ] [ text "Major:" ]
             , majorMinorText [] [ text details.major ]
@@ -38,13 +43,13 @@ eduDetails details =
             [ majorMinorText [ css defaultFont ] [ text "Minor:" ]
             , majorMinorText [] [ text details.minor ]
             ]
-        , detailList []
+        , detailsWrapper []
             [ p [ css <| defaultFont ++ [ margin zero ] ] [ text "Extracurricular Activities:" ]
-            , div [] (List.map detailBullet details.extracurricularActivities)
+            , detailsList [] (List.map detailBullet details.extracurricularActivities)
             ]
-        , detailList []
+        , detailsWrapper []
             [ p [ css <| defaultFont ++ [ margin zero ] ] [ text "Relevant Coursework:" ]
-            , div [] (List.map detailBullet details.coursework)
+            , detailsList [] (List.map detailBullet details.coursework)
             ]
         ]
 
