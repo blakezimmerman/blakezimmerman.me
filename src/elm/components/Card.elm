@@ -56,8 +56,7 @@ basicDetailText =
 toggleButton : StyledElement msg
 toggleButton =
     styled button
-        [ outline zero
-        , border zero
+        [ border zero
         , cursor pointer
         , width (pct 100)
         , color theme.white
@@ -81,6 +80,7 @@ toggleDetailsButton expandedCards id color =
             [ text "more"
             , expandNavIcon More
             ]
+
     else
         toggleButton
             [ css [ backgroundColor color ]

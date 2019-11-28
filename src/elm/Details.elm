@@ -14,6 +14,7 @@ type alias ExpDetails =
 type alias EduDetails =
     { major : String
     , minor : String
+    , extracurricularActivities : List String
     , coursework : List String
     }
 
@@ -35,9 +36,8 @@ type alias ItemDetails details =
 aboutMe : List String
 aboutMe =
     [ """
-    Hi, I'm Blake! I am currently a student at Stevens Institute
-    of Technology pursuing a B.E. in Software Engineering and a minor
-    in Computer Science.
+    Hi, I'm Blake! I am currently a software engineer building cutting
+    edge tools at Intelligent Retail Lab by Walmart.
     """
     , """
     I am most interested in front-end development and functional programming.
@@ -49,6 +49,7 @@ aboutMe =
 
 
 -- EXPERIENCE
+
 
 storeno8Details : ItemDetails ExpDetails
 storeno8Details =
@@ -131,6 +132,11 @@ stevensEduDetails =
     , details =
         { major = "Software Engineering"
         , minor = "Computer Science"
+        , extracurricularActivities =
+            [ "President and Co-Founder of Software Engineering Club"
+            , "Technology Director for Duckhacks Hackathon"
+            , "Alpha Phi Omega Service Fraternity"
+            ]
         , coursework =
             [ "Algorithms"
             , "Web Programming"
@@ -142,7 +148,7 @@ stevensEduDetails =
             , "Discrete Math"
             , "Differential Equations"
             , "Probability and Statistics for Engineers"
-            , "Engineering Design I-V"
+            , "Engineering Design I-VIII"
             ]
         }
     }

@@ -3,7 +3,7 @@ module Components.Contact exposing (..)
 import Css exposing (..)
 import Details exposing (..)
 import Html.Styled exposing (..)
-import Html.Styled.Attributes exposing (css, href, id, src, target)
+import Html.Styled.Attributes exposing (css, href, id, src)
 import Html.Styled.Events exposing (onClick)
 import Logic exposing (..)
 import Styling exposing (..)
@@ -37,7 +37,7 @@ contactImage =
 
 contactIcon : String -> String -> Html Msg
 contactIcon link name =
-    a [ href link, target "_blank" ]
+    a [ href link, Html.Styled.Attributes.target "_blank" ]
         [ contactImage
             [ src <| "assets/" ++ name ++ ".svg"
             ]

@@ -2,7 +2,7 @@ module Components.Header exposing (..)
 
 import Css exposing (..)
 import Html.Styled exposing (..)
-import Html.Styled.Attributes exposing (css, disabled, src)
+import Html.Styled.Attributes exposing (css, src)
 import Html.Styled.Events exposing (onClick)
 import Logic exposing (..)
 import Styling exposing (..)
@@ -39,6 +39,7 @@ header model =
             [ homeButton model
             , menuButton
             ]
+
     else
         headerBase
             [ css
@@ -93,12 +94,13 @@ homeButton model =
             , padding zero
             ]
         , onClick <| SmoothScroll ( "#Home", 0 )
-        , disabled <| model.scrollPercent < 15
+        , Html.Styled.Attributes.disabled <| model.scrollPercent < 15
         ]
         [ logo
             [ css <|
                 if model.scrollPercent > 15 then
                     [ cursor pointer ]
+
                 else
                     [ opacity zero ]
             , src "assets/logo.svg"

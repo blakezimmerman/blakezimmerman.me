@@ -6,6 +6,7 @@ import Html.Styled exposing (..)
 import Logic exposing (Msg)
 
 
+
 -- TYPE ALIASES
 
 
@@ -58,6 +59,9 @@ globalStyles =
             , fontWeight (int 300)
             , fontSize (rem 1.2)
             ]
+        , selector "button"
+            [ cursor pointer
+            ]
         ]
 
 
@@ -96,7 +100,6 @@ clearButton =
     styled button
         [ border zero
         , backgroundColor <| rgba 0 0 0 0
-        , outline none
         ]
 
 

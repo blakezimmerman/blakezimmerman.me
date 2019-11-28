@@ -22,8 +22,8 @@ majorMinorText =
         ]
 
 
-courseWork : StyledElement msg
-courseWork =
+detailList : StyledElement msg
+detailList =
     styled div [ marginTop (Css.rem 1.2) ]
 
 
@@ -38,7 +38,11 @@ eduDetails details =
             [ majorMinorText [ css defaultFont ] [ text "Minor:" ]
             , majorMinorText [] [ text details.minor ]
             ]
-        , courseWork []
+        , detailList []
+            [ p [ css <| defaultFont ++ [ margin zero ] ] [ text "Extracurricular Activities:" ]
+            , div [] (List.map detailBullet details.extracurricularActivities)
+            ]
+        , detailList []
             [ p [ css <| defaultFont ++ [ margin zero ] ] [ text "Relevant Coursework:" ]
             , div [] (List.map detailBullet details.coursework)
             ]
