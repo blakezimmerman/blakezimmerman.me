@@ -52,13 +52,13 @@ aboutMe =
 -- EXPERIENCE
 
 
-storeno8Details : ItemDetails ExpDetails
-storeno8Details =
-    { id = "storeno8Card"
-    , color = rgb 0 0 255
-    , logo = "/assets/storeno8logo.jpg"
-    , logoAlt = "Store No. 8 Logo"
-    , title = "Software Engineer"
+walmartDetails : ItemDetails ExpDetails
+walmartDetails =
+    { id = "walmartCard"
+    , color = rgb 0 113 206
+    , logo = "/assets/walmartlogo.jpg"
+    , logoAlt = "Walmart Logo"
+    , title = "Software Engineer III"
     , timePeriod = "March 2018 - Present"
     , details =
         [ "Implemented, tested, and maintained microservices and web applications to drive innovative in-store experiences for Walmart"

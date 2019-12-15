@@ -19,7 +19,7 @@ experience expandedCards =
     contentBase [ id "Experience" ] <|
         contentHeader [] [ text "Experience" ]
             :: List.map (card expandedCards)
-                [ ( storeno8Details, expDetails storeno8Details.details )
+                [ ( walmartDetails, expDetails walmartDetails.details )
                 , ( jetDetails, expDetails jetDetails.details )
                 , ( baeDetails, expDetails baeDetails.details )
                 , ( stevensDetails, expDetails stevensDetails.details )
