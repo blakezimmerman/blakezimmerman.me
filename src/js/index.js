@@ -3,6 +3,7 @@ const resume = require("../assets/BlakeZimmermanResume.pdf");
 const logo = require("../assets/logo.svg");
 const signature = require("../assets/signature.svg");
 const myPicture = require("../assets/blake.jpg");
+const stealthLogo = require("../assets/stealthlogo.png");
 const walmartLogo = require("../assets/walmartlogo.jpg");
 const jetLogo = require("../assets/jetlogo.jpg");
 const baeLogo = require("../assets/baelogo.jpg");
@@ -22,7 +23,7 @@ window.addEventListener("scroll", function() {
 app.ports.smoothScroll.subscribe(function([target, offset]) {
   smoothScroll(target, {
     duration: 800,
-    offset
+    offset,
   });
 });
 
