@@ -8,7 +8,7 @@
     "start:debug": "webpack-dev-server --config webpack/webpack.dev.js --env=debug --hot --inline --progress --port 8080",
     "build": "rimraf dist && webpack --config webpack/webpack.prod.js --bail",
     "prettier": "prettier --write \"src/**/*.{js,elm}*\"",
-    "publish": "firebase deploy --project blakezimmerman-e5366"
+    "publish": "npm run build && firebase deploy --project blakezimmerman-e5366"
   },
   "author": "Blake Zimmerman",
   "license": "ISC",

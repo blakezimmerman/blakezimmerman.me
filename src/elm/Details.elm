@@ -37,8 +37,8 @@ type alias ItemDetails details =
 aboutMe : List String
 aboutMe =
     [ """
-    Hi, I'm Blake! I am currently a software engineer building cutting
-    edge tools at Intelligent Retail Lab by Walmart.
+    Hi, I'm Blake! I am currently a senior software engineer building exciting
+    things at a stealth mode startup.
     """
     , """
     I am most interested in front-end development and functional programming.
@@ -52,6 +52,20 @@ aboutMe =
 -- EXPERIENCE
 
 
+stealthDetails : ItemDetails ExpDetails
+stealthDetails =
+    { id = "stealthCard"
+    , color = rgb 0 0 0
+    , logo = "/assets/stealthlogo.png"
+    , logoAlt = "Stealth Logo"
+    , title = "Senior Software Engineer"
+    , timePeriod = "October 2020 - Present"
+    , details =
+        [ "We're currently in stealth mode so all I can say for now is that we're working on exciting things!"
+        ]
+    }
+
+
 walmartDetails : ItemDetails ExpDetails
 walmartDetails =
     { id = "walmartCard"
@@ -59,12 +73,12 @@ walmartDetails =
     , logo = "/assets/walmartlogo.jpg"
     , logoAlt = "Walmart Logo"
     , title = "Software Engineer III"
-    , timePeriod = "March 2018 - Present"
+    , timePeriod = "March 2018 - October 2020"
     , details =
         [ "Implemented, tested, and maintained microservices and web applications to drive innovative in-store experiences for Walmart"
-        , "Developed a service to convert real-time RTSP video to HLS and serve it with only a 3 second delay"
-        , "Pioneered a UI component library to facilitate sharing between the company’s front-end developers"
-        , "Designed an internal React library for managing shared state in multi-window web applications"
+        , "Architected a comprehensive constraint-based design system to vastly improve the velocity of all of IRL's front-end engineers"
+        , "Developed a service to convert real-time RTSP video to HLS and serve it to the web client with only a 3 second delay"
+        , "Designed an internal React library for sharing state between browser windows to enable multi-window web application capabilities"
         ]
     }
 
