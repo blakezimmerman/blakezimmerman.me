@@ -73,7 +73,7 @@ healcoDetails =
     , color = rgb 48 214 179
     , logo = "/assets/healcologo.jpg"
     , logoAlt = "HealCo Logo"
-    , title = "Senior Software Engineering Consultant"
+    , title = "Sr. Software Engineering Consultant"
     , timePeriod = "July 2020 - November 2020"
     , details =
         [ "Integrated Stripe into the web application to enable payments by ACH debits and credit cards."
