@@ -4,7 +4,7 @@ import Components.Card exposing (..)
 import Css exposing (..)
 import Details exposing (..)
 import Html.Styled exposing (..)
-import Html.Styled.Attributes exposing (css, id)
+import Html.Styled.Attributes exposing (id)
 import Logic exposing (..)
 import Styling exposing (..)
 
@@ -19,7 +19,8 @@ experience expandedCards =
     contentBase [ id "Experience" ] <|
         contentHeader [] [ text "Experience" ]
             :: List.map (card expandedCards)
-                [ ( stealthDetails, expDetails stealthDetails.details )
+                [ ( wonderDetails, expDetails wonderDetails.details )
+                , ( healcoDetails, expDetails healcoDetails.details )
                 , ( walmartDetails, expDetails walmartDetails.details )
                 , ( jetDetails, expDetails jetDetails.details )
                 , ( baeDetails, expDetails baeDetails.details )

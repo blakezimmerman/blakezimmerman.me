@@ -4,7 +4,7 @@ import Css exposing (..)
 import Html.Styled exposing (Html)
 import Styling exposing (..)
 import Svg.Styled exposing (svg, use)
-import Svg.Styled.Attributes exposing (class, xlinkHref)
+import Svg.Styled.Attributes exposing (xlinkHref)
 
 
 navIcon : Color -> String -> Html msg

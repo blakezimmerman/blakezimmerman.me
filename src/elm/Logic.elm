@@ -96,7 +96,7 @@ update msg model =
 
 
 subscriptions : Model -> Sub Msg
-subscriptions model =
+subscriptions _ =
     scrollDetails UpdateScrollDetails
 
 

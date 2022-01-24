@@ -3,7 +3,7 @@ module Components.About exposing (..)
 import Css exposing (..)
 import Details exposing (..)
 import Html.Styled exposing (..)
-import Html.Styled.Attributes exposing (alt, css, id, src)
+import Html.Styled.Attributes exposing (alt, id, src)
 import Styling exposing (..)
 
 

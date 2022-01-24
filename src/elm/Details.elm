@@ -38,10 +38,10 @@ aboutMe : List String
 aboutMe =
     [ """
     Hi, I'm Blake! I am currently a senior software engineer building exciting
-    things at a stealth mode startup.
+    things at Wonder.
     """
     , """
-    I am most interested in front-end development and functional programming.
+    I am most interested in front-end development, design systems, and functional programming.
     I always enjoy reading about emerging technologies in these fields and
     researching how I can leverage them to create better software experiences.
     """
@@ -52,16 +52,33 @@ aboutMe =
 -- EXPERIENCE
 
 
-stealthDetails : ItemDetails ExpDetails
-stealthDetails =
-    { id = "stealthCard"
-    , color = rgb 0 0 0
-    , logo = "/assets/stealthlogo.png"
-    , logoAlt = "Stealth Logo"
+wonderDetails : ItemDetails ExpDetails
+wonderDetails =
+    { id = "wonderCard"
+    , color = rgb 111 0 75
+    , logo = "/assets/wonderlogo.jpg"
+    , logoAlt = "Wonder Logo"
     , title = "Senior Software Engineer"
     , timePeriod = "October 2020 - Present"
     , details =
-        [ "We're currently in stealth mode so all I can say for now is that we're working on exciting things!"
+        [ "Led front-end development for a tier 1 web application and implemented large features that improved the efficiency and accuracy of our food preparation process."
+        , "Architected and developed a constraint-based design system containing shared React components and platform-agnostic design tokens."
+        , "Created a front-end template and published internal NPM packages that encouraged uniform best practices and design patterns across our 8 front-end teams."
+        ]
+    }
+
+healcoDetails : ItemDetails ExpDetails
+healcoDetails =
+    { id = "healcoCard"
+    , color = rgb 48 214 179
+    , logo = "/assets/healcologo.jpg"
+    , logoAlt = "HealCo Logo"
+    , title = "Senior Software Engineering Consultant"
+    , timePeriod = "July 2020 - November 2020"
+    , details =
+        [ "Integrated Stripe into the web application to enable payments by ACH debits and credit cards."
+        , "Migrated the entire codebase from JavaScript to TypeScript to reduce bugs and improve maintainability."
+        , "Consulted on technical design choices and implemented various key features."
         ]
     }
 
@@ -75,10 +92,10 @@ walmartDetails =
     , title = "Software Engineer III"
     , timePeriod = "March 2018 - October 2020"
     , details =
-        [ "Implemented, tested, and maintained microservices and web applications to drive innovative in-store experiences for Walmart"
-        , "Architected a comprehensive constraint-based design system to vastly improve the velocity of all of IRL's front-end engineers"
-        , "Developed a service to convert real-time RTSP video to HLS and serve it to the web client with only a 3 second delay"
-        , "Designed an internal React library for sharing state between browser windows to enable multi-window web application capabilities"
+        [ "Implemented, tested, and maintained microservices and web applications to drive innovative in-store experiences for Walmart."
+        , "Architected a comprehensive constraint-based design system to vastly improve the velocity of all front-end engineers at IRL."
+        , "Developed a service to convert real-time RTSP video to HLS and serve it to the web client with only a 3 second delay."
+        , "Designed an internal React library for sharing state between browser windows to enable multi-window web application capabilities."
         ]
     }
 
@@ -92,12 +109,12 @@ jetDetails =
     , title = "Software Engineering Intern"
     , timePeriod = "January 2017 - December 2017"
     , details =
-        [ "Built a visualization tool for Jet’s internal telemetry logging system using Typescript, React, and D3"
-        , "Developed an Angular 4 front-end from the ground up for a new internal tool that shows divergence between Event Store clusters"
-        , "Implemented real-time notifications in the catalog management web application using SignalR, RxJS Observables, and F# microservices"
-        , "Rewrote the authentication system for the catalog management web application using Node.js and Passport.js"
-        , "Built a micro-scale version of the Jet.com website to demonstrate system architecture for new hires (front-end in Angular 2, back-end in Web API 2.2 using F#)"
-        , "Developed and deployed production level features to customer service, order management, and catalog management web applications"
+        [ "Built a visualization tool for Jet's internal telemetry logging system using Typescript, React, and D3."
+        , "Developed an Angular 4 front-end from the ground up for a new internal tool that shows divergence between Event Store clusters."
+        , "Implemented real-time notifications in the catalog management web application using SignalR, RxJS Observables, and F# microservices."
+        , "Rewrote the authentication system for the catalog management web application using Node.js and Passport.js."
+        , "Built a micro-scale version of the Jet.com website to demonstrate system architecture for new hires (front-end in Angular 2, back-end in Web API 2.2 using F#)."
+        , "Developed and deployed production level features to customer service, order management, and catalog management web applications."
         ]
     }
 
@@ -111,10 +128,10 @@ baeDetails =
     , title = "Technical Intern II"
     , timePeriod = "January 2016 - August 2016"
     , details =
-        [ "Developed a web-based interface for a codebase health and metrics tool"
-        , "Implemented and tested embedded software for Software Defined Radios"
-        , "Used scrum and continuous integration to improve projects"
-        , "Set up, deployed, and maintained a server cabinet"
+        [ "Developed a web-based interface for a codebase health and metrics tool."
+        , "Implemented and tested embedded software for Software Defined Radios."
+        , "Used scrum and continuous integration to improve projects."
+        , "Set up, deployed, and maintained a server cabinet."
         ]
     }
 
@@ -128,11 +145,11 @@ stevensDetails =
     , title = "Learning Technology Assistant"
     , timePeriod = "January 2015 - December 2016"
     , details =
-        [ "Created 3D models of classrooms in preparation of renovations using SketchUp"
-        , "Helped plan and execute new AV initiatives campus wide"
-        , "Designed instructional infographics for various campus AV technologies using Adobe InDesign"
-        , "Assisted with campus presentations"
-        , "Provided AV support in classrooms"
+        [ "Created 3D models of classrooms in preparation of renovations using SketchUp."
+        , "Helped plan and execute new AV initiatives campus wide."
+        , "Designed instructional infographics for various campus AV technologies using Adobe InDesign."
+        , "Assisted with campus presentations."
+        , "Provided AV support in classrooms."
         ]
     }
 

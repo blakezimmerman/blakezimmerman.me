@@ -8,7 +8,7 @@ import View exposing (..)
 
 main : Program () Model Msg
 main =
-    Browser.element
+    element
         { init = init
         , update = update
         , subscriptions = subscriptions
