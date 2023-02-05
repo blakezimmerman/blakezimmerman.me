@@ -55,15 +55,15 @@ aboutMe =
 wonderDetails : ItemDetails ExpDetails
 wonderDetails =
     { id = "wonderCard"
-    , color = rgb 111 0 75
+    , color = rgb 4 65 35
     , logo = "/assets/wonderlogo.jpg"
     , logoAlt = "Wonder Logo"
-    , title = "Senior Software Engineer"
+    , title = "Senior Software Engineer II"
     , timePeriod = "October 2020 - Present"
     , details =
-        [ "Led front-end development for a tier 1 web application and implemented large features that improved the efficiency and accuracy of our food preparation process."
+        [ "Led development for an application that managed kitchen tasks and operations to scale Wonder's culinary manufacturing process and capture feedback to validate their R&D formulas."
         , "Architected and developed a constraint-based design system containing shared React components and platform-agnostic design tokens."
-        , "Created a front-end template and published internal NPM packages that encouraged uniform best practices and design patterns across our 8 front-end teams."
+        , "Created a front-end template repo and published internal NPM packages that encouraged uniform best practices and design patterns across our 8 application teams."
         ]
     }
 
@@ -73,7 +73,7 @@ healcoDetails =
     , color = rgb 48 214 179
     , logo = "/assets/healcologo.jpg"
     , logoAlt = "HealCo Logo"
-    , title = "Sr. Software Engineering Consultant"
+    , title = "Sr. Software Engineer (Freelance)"
     , timePeriod = "July 2020 - November 2020"
     , details =
         [ "Integrated Stripe into the web application to enable payments by ACH debits and credit cards."
@@ -92,7 +92,7 @@ walmartDetails =
     , title = "Software Engineer III"
     , timePeriod = "March 2018 - October 2020"
     , details =
-        [ "Implemented, tested, and maintained microservices and web applications to drive innovative in-store experiences for Walmart."
+        [ "Implemented, tested, and maintained microservices and web applications to drive innovation at Walmart's in-store AI lab."
         , "Architected a comprehensive constraint-based design system to vastly improve the velocity of all front-end engineers at IRL."
         , "Developed a service to convert real-time RTSP video to HLS and serve it to the web client with only a 3 second delay."
         , "Designed an internal React library for sharing state between browser windows to enable multi-window web application capabilities."
@@ -202,7 +202,7 @@ email =
 
 linkedin : String
 linkedin =
-    "https://www.linkedin.com/in/blake-zimmerman-5b9961149/"
+    "https://www.linkedin.com/in/blake-zimmerman/"
 
 
 github : String
